@@ -5,4 +5,6 @@
 #  "value": "DEPARTMENT_HEAD"
 #}
 
-GET http://localhost:5000/roles/all HTTP/1.1
+#GET http://localhost:5000/roles/all HTTP/1.1
+
+#GET http://localhost:5000/roles/ADMIN HTTP/1.1

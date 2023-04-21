@@ -1,12 +1,25 @@
 import * as process from "process";
-import {NestFactory} from "@nestjs/core";
-import {AppModule} from "./app.module";
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
+import { DocumentBuilder, OpenAPIObject, SwaggerModule } from "@nestjs/swagger";
+import { INestApplication } from "@nestjs/common";
 
 const start = async (): Promise<void> => {
-    const PORT = process.env.PORT || 5000;
-    const app = await NestFactory.create(AppModule)
+  const PORT: string | 5000 = process.env.PORT || 5000;
+  const app: INestApplication = await NestFactory.create(AppModule);
 
-    await app.listen(PORT, () => console.log(`Server started...\nPort [${PORT}]`))
-}
+  app.enableCors();
+
+  const config: Omit<OpenAPIObject, "paths"> = new DocumentBuilder()
+    .setTitle("ДОКУМЕНТАЦІЯ ДО ПРОГРАМНОГО МОДУЛЯ СЕРВЕРНОЇ ЧАСТИНИ ПІДСИСТЕМИ ОБЛІКУ НАВЧАЛЬНОГО НАВАНТАЖЕННЯ НАУКОВО-ПЕДАГОГІЧНИХ ПРАЦІВНИКІВ КАФЕДРИ ІНФОРМАЦІЙНОЇ СИСТЕМИ ОРГАНІЗАЦІЇ ОСВІТНЬОЇ ДІЯЛЬНОСТІ ВВНЗ НА ОСНОВІ ПЛАТФОРМИ NODE.JS.")
+    .setDescription("Документація до серверної частини додатку на оснсові Node.js (Nest)")
+    .setVersion("1.0.1")
+    .addTag("Військовий інститут телекомунікацій та інформатизації імені Героїв Крут")
+    .build();
+  const document: OpenAPIObject = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup("/api/docs", app, document);
+
+  await app.listen(PORT, (): void => console.log(`Server started...\nPort [${PORT}]`));
+};
 
 start().catch(e => console.log(e));
