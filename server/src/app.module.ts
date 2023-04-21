@@ -4,6 +4,7 @@ import { DatabaseModule } from "./database/database.module";
 import { UsersModule } from "./users/users.module";
 import { ConfigModule } from "@nestjs/config";
 import { RolesModule } from "./roles/roles.module";
+import { RanksModule } from './ranks/ranks.module';
 import * as process from "process";
 
 @Module({
@@ -15,7 +16,8 @@ import * as process from "process";
     }),
     DatabaseModule,
     UsersModule,
-    RolesModule
+    RolesModule,
+    RanksModule
   ],
   exports: []
 })

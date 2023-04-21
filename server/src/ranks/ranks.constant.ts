@@ -1,0 +1,1 @@
+export const RANKS_REPOSITORY:string = "RANKS_REPOSITORY"
