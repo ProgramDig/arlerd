@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize-typescript";
 import * as process from "process";
-import { UsersLogin } from "../users/models/users-login.model";
-import { Teacher } from "../users/models/teacher.model";
+import { UsersLogin } from "../users-login/models/users-login.model";
+import { Teacher } from "../teacher/models/teacher.model";
 import { Roles } from "../roles/models/roles.model";
 import { Provider } from "@nestjs/common";
 import { Ranks } from "../ranks/models/ranks.model";
