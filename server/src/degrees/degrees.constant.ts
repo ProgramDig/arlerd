@@ -1,0 +1,1 @@
+export const DEGREES_REPOSITORY: string = "DEGREES_REPOSITORY";

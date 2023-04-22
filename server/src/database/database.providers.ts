@@ -5,6 +5,7 @@ import { Teacher } from "../users/models/teacher.model";
 import { Roles } from "../roles/models/roles.model";
 import { Provider } from "@nestjs/common";
 import { Ranks } from "../ranks/models/ranks.model";
+import { Degrees } from "../degrees/models/degrees.model";
 
 export const databaseProviders: Provider[] = [
   {
@@ -22,7 +23,8 @@ export const databaseProviders: Provider[] = [
         UsersLogin,
         Teacher,
         Roles,
-        Ranks
+        Ranks,
+        Degrees
       ]);
       await sequelize.sync();
       return sequelize;

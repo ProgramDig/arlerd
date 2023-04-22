@@ -15,9 +15,9 @@ export class RanksService {
 
   async createMany(dto: RanksCreateManyDto):Promise<string> {
     for (const rank of dto.list) {
-      await this.ranksRepository.create(rank)
+      await this.ranksRepository.create(rank);
     }
-    return "OK"
+    return "OK";
   }
 
   async getAll():Promise<Ranks[]> {

@@ -1,0 +1,23 @@
+GET http://localhost:5000/degrees/all HTTP/1.1
+
+#GET http://localhost:5000/degrees/1 HTTP/1.1
+
+#POST http://localhost:5000/degrees/create HTTP/1.1
+#Content-Type: application/json
+#
+#{
+#  "value": "Ад'юнкт"
+#}
+
+#POST http://localhost:5000/degrees/create-many HTTP/1.1
+#Content-Type: application/json
+#
+#{
+#  "list": [
+#    { "value": "Молодший спеціаліст" },
+#    { "value": "Спеціаліст" },
+#    { "value": "Магістр" },
+#    { "value": "Кандидат наук" },
+#    { "value": "Доктор наук" }
+#  ]
+#}
