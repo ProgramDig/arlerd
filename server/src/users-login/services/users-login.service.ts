@@ -1,4 +1,4 @@
-import { Inject, Injectable } from "@nestjs/common";
+import { BadRequestException, Inject, Injectable } from "@nestjs/common";
 import { UsersLogin } from "../models/users-login.model";
 import { CreateUserLoginDto } from "../dto/CreateUserLogin.dto";
 import { USERS_LOGIN_REPOSITORY } from "../users-login.constant";
@@ -17,9 +17,15 @@ export class UsersLoginService {
   async createUser(dto: CreateUserLoginDto): Promise<UsersLogin> {
     const user: UsersLogin = await this.usersLoginRepository.create(dto);
     const role: Roles = await this.roleService.getRoleByValue("USER");
-    await user.setDataValue("idRole", role.id);
+
+    if (!role) {
+      throw new BadRequestException("Такої ролі немає в базі");
+    }
+
+    user.idRole = role.id;
     user.role = role;
     user.activatedLink = uuid();
+    await user.save();
     return user;
   }
 
@@ -28,7 +34,8 @@ export class UsersLoginService {
   }
 
   async getUserByEmailOrLogin(login: string | null, email: string | null): Promise<UsersLogin> {
-    return await this.usersLoginRepository.findOne({
+    console.log(login, email);
+    await this.usersLoginRepository.findOne({
       where: {
         [Op.or]: [{ login: login ? login : null }, { email: email ? email : null }]
       },
@@ -36,5 +43,9 @@ export class UsersLoginService {
         all: true
       }
     });
+  }
+
+  async removeAll(): Promise<number> {
+    return await this.usersLoginRepository.destroy({ where: {}, truncate: true });
   }
 }

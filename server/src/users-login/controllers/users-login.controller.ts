@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
 import { CreateUserLoginDto } from "../dto/CreateUserLogin.dto";
 import { UsersLoginService } from "../services/users-login.service";
 import { UsersLogin } from "../models/users-login.model";
@@ -18,4 +18,13 @@ export class UsersLoginController {
     return this.userLoginService.getAllUser();
   }
 
+  @Get("/:login,:email")
+  getByEmailOrLogin(@Param("login") login: string, @Param("email") email: string): Promise<UsersLogin> {
+    return this.userLoginService.getUserByEmailOrLogin(login, email);
+  }
+
+  @Delete("/delete-all")
+  removeAll(): Promise<number> {
+    return this.userLoginService.removeAll();
+  }
 }

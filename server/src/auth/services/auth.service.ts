@@ -37,10 +37,19 @@ export class AuthService {
 
   async validateUser(userLoginDto: CreateUserLoginDto) {
     const user: UsersLogin = await this.userLoginService.getUserByEmailOrLogin(userLoginDto.login, userLoginDto.email);
+    console.log(user);
     const passwordEquals = await bcrypt.compare(userLoginDto.password, user.password);
     if (user && passwordEquals) {
       return user;
     }
-    throw new UnauthorizedException({ message: "Невірні дані при логіні" });
+    throw new UnauthorizedException({ message: "Невірні введені дані при логіні" });
+  }
+
+  async isRole(dto) {
+    const user = this.jwtService.verify(dto.token);
+    if (user.role === dto.role) {
+      return { role: user.role };
+    }
+    throw new HttpException("Немає доступа", HttpStatus.NOT_FOUND);
   }
 }

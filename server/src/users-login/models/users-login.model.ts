@@ -7,7 +7,7 @@ interface UserCreationAttrs {
   password: string;
 }
 
-@Table({ tableName: "users-login" })
+@Table({ tableName: "users-login.http" })
 export class UsersLogin extends Model<UsersLogin, UserCreationAttrs> {
   @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
   id: number;

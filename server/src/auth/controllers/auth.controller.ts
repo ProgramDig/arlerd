@@ -22,4 +22,9 @@ export class AuthController {
   registration(@Body() userLoginDto: CreateUserLoginDto) {
     return this.authService.registration(userLoginDto);
   }
+
+  @Post("/is-role")
+  isRole(@Body() dto) {
+    return this.authService.isRole(dto);
+  }
 }
