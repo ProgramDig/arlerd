@@ -1,0 +1,8 @@
+POST http://localhost:5000/users-login/create HTTP/1.1
+Content-Type: application/json
+
+{
+  "login": "dmytro12",
+  "email": "dmytro12gmail.com",
+  "password": "111111"
+}

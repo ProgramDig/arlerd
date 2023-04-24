@@ -14,7 +14,8 @@ import { rolesProviders } from "./providers/rolesProviders";
   ],
   controllers: [RolesController],
   exports: [
-    ...rolesProviders
+    ...rolesProviders,
+    RolesService
   ]
 })
 export class RolesModule {
