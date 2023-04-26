@@ -2,7 +2,7 @@ POST http://localhost:5000/auth/registration HTTP/1.1
 Content-Type: application/json
 
 {
-  "login": "alexy",
-  "email": "alexy@gmail.com",
+  "login": "dmytro1233",
+  "email": "dmytro1233@gmail.com",
   "password": "111111"
 }

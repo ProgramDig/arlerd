@@ -4,6 +4,7 @@ import { UsersLoginService } from './services/users-login.service';
 import { DatabaseModule } from "../database/database.module";
 import { usersLoginProviders } from "./providers/users-login.providers";
 import { RolesModule } from "../roles/roles.module";
+import { TokensModule } from "../tokens/tokens.module";
 
 @Module({
   controllers: [UsersLoginController],
@@ -11,7 +12,7 @@ import { RolesModule } from "../roles/roles.module";
     UsersLoginService,
     ...usersLoginProviders,
   ],
-  imports:[DatabaseModule, RolesModule],
+  imports:[DatabaseModule, RolesModule, TokensModule],
   exports:[UsersLoginService]
 })
 export class UsersLoginModule {}

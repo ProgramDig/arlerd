@@ -6,11 +6,11 @@ import { UsersLoginModule } from "../users-login/users-login.module";
 import { JwtModule } from "@nestjs/jwt";
 import * as process from "process";
 import { RolesModule } from "../roles/roles.module";
-import { rolesProviders } from "../roles/providers/rolesProviders";
+import { TokensModule } from "../tokens/tokens.module";
 
 @Module({
-  imports: [UsersLoginModule, DatabaseModule, RolesModule, JwtModule.register({
-    secret: process.env.PRIVATE_KEY || "SECRET",
+  imports: [UsersLoginModule, DatabaseModule, RolesModule, TokensModule, JwtModule.register({
+    secret: process.env.ACCESS_PRIVATE_KEY || "SECRET",
     signOptions: { expiresIn: "24h" }
   })],
   providers: [AuthService],

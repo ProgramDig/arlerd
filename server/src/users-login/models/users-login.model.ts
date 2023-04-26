@@ -1,5 +1,6 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import { BelongsTo, Column, DataType, ForeignKey, HasOne, Model, Table } from "sequelize-typescript";
 import { Roles } from "../../roles/models/roles.model";
+import { Tokens } from "../../tokens/models/tokens.model";
 
 interface UserCreationAttrs {
   login: string;
@@ -7,7 +8,7 @@ interface UserCreationAttrs {
   password: string;
 }
 
-@Table({ tableName: "users-login.http" })
+@Table({ tableName: "users-login" })
 export class UsersLogin extends Model<UsersLogin, UserCreationAttrs> {
   @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
   id: number;
@@ -28,12 +29,12 @@ export class UsersLogin extends Model<UsersLogin, UserCreationAttrs> {
   isActivated: boolean;
 
   @ForeignKey(() => Roles)
-  @Column({ type: DataType.INTEGER, allowNull: true, unique: true })
+  @Column({ type: DataType.INTEGER, allowNull: true })
   idRole: number;
 
   @BelongsTo(() => Roles)
   role: Roles;
 
-  @Column({ type: DataType.INTEGER, allowNull: true })
-  idTokens: number;
+  @HasOne(() => Tokens)
+  idTokens: Tokens;
 }

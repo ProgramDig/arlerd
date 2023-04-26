@@ -6,24 +6,29 @@ import { Op } from "sequelize";
 import { Roles } from "../../roles/models/roles.model";
 import { RolesService } from "../../roles/services/roles.service";
 import { v4 as uuid } from "uuid";
+import { TokensService } from "../../tokens/services/tokens.service";
+import { GenerateTokens } from "../types";
+import { Tokens } from "../../tokens/models/tokens.model";
 
 @Injectable()
 export class UsersLoginService {
   constructor(
     @Inject(USERS_LOGIN_REPOSITORY) private usersLoginRepository: typeof UsersLogin,
-    private roleService: RolesService) {
+    private roleService: RolesService,
+    private tokenService: TokensService) {
   }
 
   async createUser(dto: CreateUserLoginDto): Promise<UsersLogin> {
     const user: UsersLogin = await this.usersLoginRepository.create(dto);
     const role: Roles = await this.roleService.getRoleByValue("USER");
-
     if (!role) {
       throw new BadRequestException("Такої ролі немає в базі");
     }
 
+    const tokens:GenerateTokens = await this.tokenService.generateTokens(user);
+    user.idTokens = await this.tokenService.saveToken(user.id, tokens.refreshToken);
+
     user.idRole = role.id;
-    user.role = role;
     user.activatedLink = uuid();
     await user.save();
     return user;
