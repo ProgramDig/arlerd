@@ -11,6 +11,7 @@ import { TeacherModule } from './teacher/teacher.module';
 import { AuthService } from './auth/services/auth.service';
 import { AuthController } from './auth/controllers/auth.controller';
 import { AuthModule } from './auth/auth.module';
+import { TokensModule } from './tokens/tokens.module';
 import * as process from "process";
 
 @Module({
@@ -26,7 +27,8 @@ import * as process from "process";
     RanksModule,
     DegreesModule,
     TeacherModule,
-    AuthModule
+    AuthModule,
+    TokensModule
   ],
   exports: []
 })

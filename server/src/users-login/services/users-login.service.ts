@@ -35,7 +35,7 @@ export class UsersLoginService {
 
   async getUserByEmailOrLogin(login: string | null, email: string | null): Promise<UsersLogin> {
     console.log(login, email);
-    await this.usersLoginRepository.findOne({
+    return  await this.usersLoginRepository.findOne({
       where: {
         [Op.or]: [{ login: login ? login : null }, { email: email ? email : null }]
       },
