@@ -3,12 +3,14 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { DocumentBuilder, OpenAPIObject, SwaggerModule } from "@nestjs/swagger";
 import { INestApplication, Logger } from "@nestjs/common";
+import * as cookieParser from "cookie-parser";
 
 const start = async (): Promise<void> => {
   const PORT: string | 5000 = process.env.PORT || 5000;
   const app: INestApplication = await NestFactory.create(AppModule);
 
   app.enableCors();
+  app.use(cookieParser());
 
   const config: Omit<OpenAPIObject, "paths"> = new DocumentBuilder()
     .setTitle("ДОКУМЕНТАЦІЯ ДО ПРОГРАМНОГО МОДУЛЯ СЕРВЕРНОЇ ЧАСТИНИ ПІДСИСТЕМИ ОБЛІКУ НАВЧАЛЬНОГО НАВАНТАЖЕННЯ НАУКОВО-ПЕДАГОГІЧНИХ ПРАЦІВНИКІВ КАФЕДРИ ІНФОРМАЦІЙНОЇ СИСТЕМИ ОРГАНІЗАЦІЇ ОСВІТНЬОЇ ДІЯЛЬНОСТІ ВВНЗ НА ОСНОВІ ПЛАТФОРМИ NODE.JS.")

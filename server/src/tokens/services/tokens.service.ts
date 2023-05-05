@@ -17,7 +17,7 @@ export class TokensService {
     return {
       accessToken: this.jwtService.sign(payload, { expiresIn: "1h", secret: process.env.ACCESS_PRIVATE_KEY }),
       refreshToken: this.jwtService.sign(payload, { expiresIn: "30d", secret: process.env.REFRESH_PRIVATE_KEY }),
-      role: user.role
+      role: user.idRole
     };
   }
 

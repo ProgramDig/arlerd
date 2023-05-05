@@ -9,6 +9,7 @@ import { DegreesModule } from "./degrees/degrees.module";
 import { TeacherModule } from "./teacher/teacher.module";
 import { AuthModule } from "./auth/auth.module";
 import { TokensModule } from "./tokens/tokens.module";
+import { TestModule } from "./test/test.module";
 import * as process from "process";
 
 @Module({
@@ -25,7 +26,8 @@ import * as process from "process";
     DegreesModule,
     TeacherModule,
     AuthModule,
-    TokensModule
+    TokensModule,
+    TestModule
   ],
   exports: []
 })

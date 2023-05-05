@@ -5,6 +5,7 @@ import * as bcrypt from "bcryptjs";
 import { UsersLogin } from "../../users-login/models/users-login.model";
 import { TokensService } from "../../tokens/services/tokens.service";
 import { JwtService } from "@nestjs/jwt";
+import { UserDto } from "../dto/user.dto";
 
 @Injectable()
 export class AuthService {
@@ -16,7 +17,14 @@ export class AuthService {
 
   async login(userLoginDto: CreateUserLoginDto) {
     const user: UsersLogin = await this.validateUser(userLoginDto);
-    return { ...this.tokenService.generateTokens(user), role: user.idRole };
+    const userDto: UserDto = {
+      id: user.id,
+      login: user.login,
+      email: user.email,
+      isActivated: user.isActivated,
+      role: user.role.value
+    };
+    return { ...this.tokenService.generateTokens(user), user: userDto };
   }
 
   async registration(userLoginDto: CreateUserLoginDto) {

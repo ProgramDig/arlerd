@@ -1,4 +1,3 @@
-import { Roles } from "../roles/models/roles.model";
 
 export type Payload = {
   email: string,
@@ -10,5 +9,5 @@ export type Payload = {
 export type GenerateTokens = {
   accessToken: string
   refreshToken: string
-  role: Roles
+  role: number
 }

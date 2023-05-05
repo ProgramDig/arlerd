@@ -1,6 +1,7 @@
 import { BelongsTo, Column, DataType, ForeignKey, HasOne, Model, Table } from "sequelize-typescript";
 import { Roles } from "../../roles/models/roles.model";
 import { Tokens } from "../../tokens/models/tokens.model";
+import { Teacher } from "../../teacher/models/teacher.model";
 
 interface UserCreationAttrs {
   login: string;
@@ -37,4 +38,11 @@ export class UsersLogin extends Model<UsersLogin, UserCreationAttrs> {
 
   @HasOne(() => Tokens)
   idTokens: Tokens;
+
+  @ForeignKey(() => Teacher)
+  @Column({ type: DataType.INTEGER, allowNull: true })
+  teacherId: number;
+
+  @BelongsTo(() => Teacher)
+  user: Teacher;
 }

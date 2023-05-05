@@ -7,6 +7,7 @@ import { Provider } from "@nestjs/common";
 import { Ranks } from "../ranks/models/ranks.model";
 import { Degrees } from "../degrees/models/degrees.model";
 import { Tokens } from "../tokens/models/tokens.model";
+import { Test } from "../test/test.model";
 
 export const databaseProviders: Provider[] = [
   {
@@ -26,7 +27,8 @@ export const databaseProviders: Provider[] = [
         Roles,
         Ranks,
         Degrees,
-        Tokens
+        Tokens,
+        Test
       ]);
       await sequelize.sync();
       return sequelize;
