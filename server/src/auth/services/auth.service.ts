@@ -28,13 +28,13 @@ export class AuthService {
   }
 
   async registration(userLoginDto: CreateUserLoginDto) {
-    const { email, login, password }: CreateUserLoginDto = userLoginDto;
+    const { email, login, password, role }: CreateUserLoginDto = userLoginDto;
     const candidate: UsersLogin = await this.userLoginService.getUserByEmailOrLogin(login, email);
     if (candidate) {
       throw new HttpException("Користувач з таким логіном або поштою вже створений", HttpStatus.BAD_REQUEST);
     }
     const hashPassword = await bcrypt.hash(password, 5);
-    const user: UsersLogin = await this.userLoginService.createUser({ email, login, password: hashPassword });
+    const user: UsersLogin = await this.userLoginService.createUser({ email, login, role, password: hashPassword });
     return { ...this.tokenService.generateTokens(user), role: user.idRole };
   }
 

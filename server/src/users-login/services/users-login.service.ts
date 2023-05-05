@@ -20,7 +20,7 @@ export class UsersLoginService {
 
   async createUser(dto: CreateUserLoginDto): Promise<UsersLogin> {
     const user: UsersLogin = await this.usersLoginRepository.create(dto);
-    const role: Roles = await this.roleService.getRoleByValue("USER");
+    const role: Roles = await this.roleService.getRoleByValue(dto.role);
     if (!role) {
       throw new BadRequestException("Такої ролі немає в базі");
     }
