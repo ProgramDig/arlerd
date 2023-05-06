@@ -1,0 +1,13 @@
+POST http://localhost:5000/teacher/create HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName": "Анохін",
+  "secondName": "Дмитро",
+  "thirdName": "Андрйович",
+  "dateOfBirth": "1999-03-13",
+  "phoneNumber": "+380-68-4432-401",
+  "idRank": 2,
+  "idDegree": 2,
+  "idUserLogin": 2
+}

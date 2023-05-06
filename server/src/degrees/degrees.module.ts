@@ -8,7 +8,7 @@ import { DatabaseModule } from "../database/database.module";
   controllers: [DegreesController],
   providers: [DegreesService, ...degreesProviders],
   imports: [DatabaseModule],
-  exports: [...degreesProviders]
+  exports: [...degreesProviders, DegreesService]
 })
 export class DegreesModule {
 }

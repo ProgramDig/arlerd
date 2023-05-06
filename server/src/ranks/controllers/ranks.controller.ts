@@ -35,7 +35,7 @@ export class RanksController {
   @ApiOperation({ summary: "Отримання поточного звання" })
   @ApiResponse({ status: 200, type: Ranks })
   @Get("/:value")
-  getOne(@Param("value") value: string): Promise<Ranks> {
+  getOne(@Param("value") value: number): Promise<Ranks> {
     return this.ranksService.getOne(value);
   }
 }

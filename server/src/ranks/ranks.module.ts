@@ -7,7 +7,8 @@ import { ranksProviders } from "./providers/ranks.providers";
 @Module({
   controllers: [RanksController],
   providers: [RanksService, ...ranksProviders],
-  imports: [DatabaseModule]
+  imports: [DatabaseModule],
+  exports: [...ranksProviders, RanksService]
 })
 export class RanksModule {
 }

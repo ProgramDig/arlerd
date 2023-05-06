@@ -24,7 +24,7 @@ export class RanksService {
     return await this.ranksRepository.findAll();
   }
 
-  async getOne(value: string):Promise<Ranks> {
-    return await this.ranksRepository.findOne({where:{value}});
+  async getOne(id: number):Promise<Ranks> {
+    return await this.ranksRepository.findByPk(id);
   }
 }
