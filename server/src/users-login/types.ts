@@ -1,14 +1,14 @@
-import { Roles } from "../roles/models/roles.model";
+import { Roles } from '../roles/models/roles.model';
 
 export type Payload = {
-  email: string,
-  login: string,
-  id: number,
-  role: number
-}
+  email: string;
+  login: string;
+  id: number;
+  role: number;
+};
 
 export type GenerateTokens = {
-  accessToken: string
-  refreshToken: string
-  role: Roles
-}
+  accessToken: string;
+  refreshToken: string;
+  role: Roles;
+};

@@ -1,6 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class DegreesCreateDto {
-  @ApiProperty({example: "Ад'юнкт", description: "Опис наукового звання"})
-  readonly value: string
+  @ApiProperty({ example: "Ад'юнкт", description: 'Опис наукового звання' })
+  readonly value: string;
 }

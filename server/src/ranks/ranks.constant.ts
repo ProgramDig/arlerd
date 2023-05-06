@@ -1,1 +1,1 @@
-export const RANKS_REPOSITORY:string = "RANKS_REPOSITORY"
+export const RANKS_REPOSITORY = 'RANKS_REPOSITORY';

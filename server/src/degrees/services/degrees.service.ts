@@ -1,13 +1,14 @@
-import { Inject, Injectable } from "@nestjs/common";
-import { DEGREES_REPOSITORY } from "../degrees.constant";
-import { Degrees } from "../models/degrees.model";
-import { DegreesCreateDto } from "../dto/DegreesCreate.dto";
-import { DegreesCreateManyDto } from "../dto/DegreesCreateMany.dto";
+import { Inject, Injectable } from '@nestjs/common';
+import { DEGREES_REPOSITORY } from '../degrees.constant';
+import { Degrees } from '../models/degrees.model';
+import { DegreesCreateDto } from '../dto/DegreesCreate.dto';
+import { DegreesCreateManyDto } from '../dto/DegreesCreateMany.dto';
 
 @Injectable()
 export class DegreesService {
-  constructor(@Inject(DEGREES_REPOSITORY) private degreesRepository: typeof Degrees) {
-  }
+  constructor(
+    @Inject(DEGREES_REPOSITORY) private degreesRepository: typeof Degrees,
+  ) {}
 
   async create(dto: DegreesCreateDto): Promise<Degrees> {
     return this.degreesRepository.create(dto);
@@ -17,7 +18,7 @@ export class DegreesService {
     for (const degree of dto.list) {
       await this.degreesRepository.create(degree);
     }
-    return "OK";
+    return 'OK';
   }
 
   async getOne(id: number): Promise<Degrees> {

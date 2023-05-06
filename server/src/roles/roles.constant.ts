@@ -1,1 +1,1 @@
-export const ROLES_REPOSITORY: string = "ROLES_REPOSITORY";
+export const ROLES_REPOSITORY = 'ROLES_REPOSITORY';
