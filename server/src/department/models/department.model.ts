@@ -4,6 +4,7 @@ import { Specialty } from "../../specialty/models/specialty.model";
 interface DepartmentCreateAttrs {
   name: string;
   idSpecialty: number;
+  number: number;
 }
 
 @Table({ tableName: "department" })
@@ -14,11 +15,13 @@ export class Department extends Model<Department, DepartmentCreateAttrs> {
   @Column({ type: DataType.STRING, allowNull: true })
   name: string;
 
+  @Column({ type: DataType.INTEGER, allowNull: true })
+  number: number;
+
   @ForeignKey(() => Specialty)
   @Column({ type: DataType.INTEGER, allowNull: true })
   idSpecialty: number;
 
   @BelongsTo(() => Specialty)
   specialty: Specialty;
-
 }
