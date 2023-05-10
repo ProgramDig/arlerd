@@ -1,6 +1,5 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
-import { UsersLogin } from "../../users-login/models/users-login.model";
 import { Teacher } from "../../teacher/models/teacher.model";
 
 interface RankAttrs {

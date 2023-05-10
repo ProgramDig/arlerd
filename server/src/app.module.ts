@@ -13,6 +13,7 @@ import { TestModule } from "./test/test.module";
 import { SpecialtyModule } from './specialty/specialty.module';
 import * as process from "process";
 import { DepartmentModule } from "./department/department.module";
+import { PositionModule } from './position/position.module';
 
 @Module({
   controllers: [],
@@ -31,7 +32,8 @@ import { DepartmentModule } from "./department/department.module";
     TokensModule,
     TestModule,
     SpecialtyModule,
-    DepartmentModule
+    DepartmentModule,
+    PositionModule
   ],
   exports: []
 })
