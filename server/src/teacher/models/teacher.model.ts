@@ -1,4 +1,4 @@
-import { Column, DataType, HasOne, Model, Table } from "sequelize-typescript";
+import { BelongsTo, Column, DataType, ForeignKey, HasOne, Model, Table } from "sequelize-typescript";
 import { Ranks } from "../../ranks/models/ranks.model";
 import { Degrees } from "../../degrees/models/degrees.model";
 import { UsersLogin } from "../../users-login/models/users-login.model";
@@ -30,21 +30,24 @@ export class Teacher extends Model<Teacher, TeacherCreationAttrs> {
   @Column({ type: DataType.STRING, allowNull: true })
   phoneNumber: string
 
+  @ForeignKey(() => Ranks)
   @Column({ type: DataType.INTEGER})
   idRank: number
 
-  @HasOne(() => Ranks)
+  @BelongsTo(() => Ranks)
   rank: Ranks
 
+  @ForeignKey(() => Degrees)
   @Column({ type: DataType.INTEGER})
   idDegree: number
 
-  @HasOne(() => Degrees)
+  @BelongsTo(() => Degrees)
   degree: Degrees
 
+  @ForeignKey(() => UsersLogin)
   @Column({ type: DataType.INTEGER})
   idUserLogin: number
 
-  @HasOne(() => UsersLogin)
+  @BelongsTo(() => UsersLogin)
   userLogin: UsersLogin
 }

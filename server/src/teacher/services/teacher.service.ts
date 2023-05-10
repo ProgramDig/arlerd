@@ -16,21 +16,20 @@ export class TeacherService {
 
   async create(dto: CreateTeacherDto): Promise<Teacher> {
     const teacher: Teacher = await this.teacherRepository.create(dto);
-    
+
     teacher.rank = await this.ranksService.getOne(dto.idRank);
     teacher.degree = await this.degreesService.getOne(dto.idDegree);
     teacher.userLogin = await this.userLoginService.getOne(dto.idUserLogin);
 
-    console.log(teacher);
     await teacher.save();
-    return teacher;
+    return this.getByPk(teacher.id);
+  }
+
+  async getByPk(id: number): Promise<Teacher> {
+    return await this.teacherRepository.findByPk(id, { include: { all: true } });
   }
 
   async getAll(): Promise<Teacher[]> {
-    return await this.teacherRepository.findAll({
-      include: {
-        all: true
-      }
-    });
+    return await this.teacherRepository.findAll({ include: { all: true } });
   }
 }
