@@ -9,6 +9,7 @@ import { Degrees } from "../degrees/models/degrees.model";
 import { Tokens } from "../tokens/models/tokens.model";
 import { Test } from "../test/test.model";
 import { Specialty } from "../specialty/models/specialty.model";
+import { Department } from "../department/models/department.model";
 
 export const databaseProviders: Provider[] = [
   {
@@ -30,7 +31,8 @@ export const databaseProviders: Provider[] = [
         Degrees,
         Tokens,
         Test,
-        Specialty
+        Specialty,
+        Department
       ]);
       await sequelize.sync();
       return sequelize;
