@@ -1,0 +1,1 @@
+export const GROUP_REPOSITORY: string = "GROUP_REPOSITORY";
