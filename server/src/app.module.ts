@@ -21,11 +21,17 @@ import { DisciplineTeacherYearModule } from "./discipline-teacher-year/disciplin
 import { CourseModule } from "./course/course.module";
 import { GroupModule } from "./group/group.module";
 import { GroupDisciplineTeacherYearModule } from "./group-discipline-teacher-year/group-discipline-teacher-year.module";
+import { GenerateModule } from './generate/generate.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from "path";
 
 @Module({
   controllers: [],
   providers: [],
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, "..", "public")
+    }),
     ConfigModule.forRoot({
       envFilePath: `.${process.env.NODE_ENV}.env`
     }),
@@ -47,7 +53,8 @@ import { GroupDisciplineTeacherYearModule } from "./group-discipline-teacher-yea
     DisciplineTeacherYearModule,
     CourseModule,
     GroupModule,
-    GroupDisciplineTeacherYearModule
+    GroupDisciplineTeacherYearModule,
+    GenerateModule
   ],
   exports: []
 })

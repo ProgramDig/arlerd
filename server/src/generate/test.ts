@@ -6,15 +6,20 @@ const input = {
 };
 
 // Перша сторінка
-const firstData = {
-  departmentFullName: "Кафедра комп’ютерних інформаційних технологій",
-  departmentCode: 22,
-  departmentCommanderRank: "полковник",
-  departmentCommanderInitialName: "Е",
-  departmentCommanderSecondName: "БОВДА",
+export const firstData = {
+  department: {
+    fullName: "Кафедра комп’ютерних інформаційних технологій",
+    code: 22,
+    commanderRank: "полковник",
+    commanderFirstName: "Е",
+    commanderSecondName: "БОВДА",
+  },
   nowYear: "2023",
   fromTheYear: "2023",
   upToYear: "2024",
+  teacher: {
+
+  },
   teacherPosition: "доцента кафедри",
   positionRate: "ставка",
   teacherDegree: "кандидата технічних наук",

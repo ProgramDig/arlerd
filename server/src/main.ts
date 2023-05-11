@@ -4,6 +4,8 @@ import { AppModule } from "./app.module";
 import { DocumentBuilder, OpenAPIObject, SwaggerModule } from "@nestjs/swagger";
 import { INestApplication, Logger } from "@nestjs/common";
 import * as cookieParser from "cookie-parser";
+import { join } from "path";
+
 
 const start = async (): Promise<void> => {
   const PORT: string | 5000 = process.env.PORT || 5000;

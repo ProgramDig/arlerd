@@ -1,0 +1,20 @@
+POST http://localhost:5000/generate/go HTTP/1.1
+Content-Type: application/json
+
+{
+  "departmentFullName": "Кафедра комп’ютерних інформаційних технологій",
+  "departmentCode": 22,
+  "departmentCommanderRank": "полковник",
+  "departmentCommanderFirstName": "Е",
+  "departmentCommanderSecondName": "БОВДА",
+  "nowYear": "2023",
+  "fromTheYear": "2023",
+  "upToYear": "2024",
+  "teacherPosition": "доцента кафедри",
+  "positionRate": "ставка",
+  "teacherDegree": "кандидата технічних наук",
+  "teacherRank": "підполковника",
+  "teacherSecondName": "ЗДОРЕНКА",
+  "teacherFirstName": "Юрія",
+  "teacherThirdName": "Миколайовича"
+}
