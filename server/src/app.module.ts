@@ -17,6 +17,7 @@ import { PositionModule } from './position/position.module';
 import { DisciplineModule } from "./discipline/discipline.module";
 import { YearModule } from './year/year.module';
 import { TeacherPositionModule } from './teacher-position/teacher-position.module';
+import { DisciplineTeacherYearModule } from './discipline-teacher-year/discipline-teacher-year.module';
 
 @Module({
   controllers: [],
@@ -39,7 +40,8 @@ import { TeacherPositionModule } from './teacher-position/teacher-position.modul
     PositionModule,
     DisciplineModule,
     YearModule,
-    TeacherPositionModule
+    TeacherPositionModule,
+    DisciplineTeacherYearModule
   ],
   exports: []
 })
