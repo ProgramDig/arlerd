@@ -13,6 +13,7 @@ import { Department } from "../department/models/department.model";
 import { Position } from "../position/models/position.model";
 import { Discipline } from "../discipline/models/discipline.model";
 import { Year } from "../year/models/year.model";
+import { TeacherPosition } from "../teacher-position/model/teacher-position.model";
 
 export const databaseProviders: Provider[] = [
   {
@@ -38,7 +39,8 @@ export const databaseProviders: Provider[] = [
         Department,
         Position,
         Discipline,
-        Year
+        Year,
+        TeacherPosition
       ]);
       await sequelize.sync();
       return sequelize;

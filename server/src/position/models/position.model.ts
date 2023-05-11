@@ -1,5 +1,7 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import { BelongsTo, BelongsToMany, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { Department } from "../../department/models/department.model";
+import { Teacher } from "../../teacher/models/teacher.model";
+import { TeacherPosition } from "../../teacher-position/model/teacher-position.model";
 
 interface PositionCreateAttrs {
   value: string;
@@ -20,4 +22,7 @@ export class Position extends Model<Position, PositionCreateAttrs> {
 
   @BelongsTo(() => Department)
   department: Department;
+
+  @BelongsToMany(() => Teacher, ()=> TeacherPosition)
+  teachers: Teacher[]
 }

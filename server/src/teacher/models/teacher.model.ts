@@ -1,7 +1,9 @@
-import { BelongsTo, Column, DataType, ForeignKey, HasOne, Model, Table } from "sequelize-typescript";
+import { BelongsTo, BelongsToMany, Column, DataType, ForeignKey, HasOne, Model, Table } from "sequelize-typescript";
 import { Ranks } from "../../ranks/models/ranks.model";
 import { Degrees } from "../../degrees/models/degrees.model";
 import { UsersLogin } from "../../users-login/models/users-login.model";
+import { Position } from "../../position/models/position.model";
+import { TeacherPosition } from "../../teacher-position/model/teacher-position.model";
 
 interface TeacherCreationAttrs {
   firstName: string
@@ -50,4 +52,7 @@ export class Teacher extends Model<Teacher, TeacherCreationAttrs> {
 
   @BelongsTo(() => UsersLogin)
   userLogin: UsersLogin
+
+  @BelongsToMany(() => Position, () => TeacherPosition)
+  positions: Position[]
 }
