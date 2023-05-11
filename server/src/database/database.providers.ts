@@ -17,6 +17,9 @@ import { TeacherPosition } from "../teacher-position/model/teacher-position.mode
 import { DisciplineTeacherYear } from "../discipline-teacher-year/models/discipline-teacher-year.model";
 import { Course } from "../course/models/course.model";
 import { Group } from "../group/models/group.model";
+import {
+  GroupDisciplineTeacherYear
+} from "../group-discipline-teacher-year/models/group-discipline-teacher-year.model";
 
 export const databaseProviders: Provider[] = [
   {
@@ -46,7 +49,8 @@ export const databaseProviders: Provider[] = [
         TeacherPosition,
         DisciplineTeacherYear,
         Course,
-        Group
+        Group,
+        GroupDisciplineTeacherYear
       ]);
       await sequelize.sync();
       return sequelize;
