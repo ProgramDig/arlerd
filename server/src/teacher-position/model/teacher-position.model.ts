@@ -18,9 +18,15 @@ export class TeacherPosition extends Model<TeacherPosition, TeacherPositionCreat
   @Column({ type: DataType.INTEGER })
   idTeacher: number;
 
+  @BelongsTo(() => Teacher)
+  teacher: Teacher;
+
   @ForeignKey(() => Position)
   @Column({ type: DataType.INTEGER })
   idPosition: number;
+
+  @BelongsTo(() => Position)
+  position: Position;
 
   @ForeignKey(() => Year)
   @Column({ type: DataType.INTEGER })

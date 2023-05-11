@@ -1,0 +1,8 @@
+POST http://localhost:5000/teacher-position/create HTTP/1.1
+Content-Type: application/json
+
+{
+  "idTeacher": 3,
+  "idPosition": 3,
+  "idYear": 1
+}

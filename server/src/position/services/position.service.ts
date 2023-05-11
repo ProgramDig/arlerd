@@ -13,6 +13,6 @@ export class PositionService {
   }
 
   async getAll(): Promise<Position[]> {
-    return await this.positionRepository.findAll();
+    return await this.positionRepository.findAll({ include: { all: true } });
   }
 }

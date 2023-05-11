@@ -1,0 +1,7 @@
+POST http://localhost:5000/position/create
+Content-Type: application/json
+
+{
+  "value": "Старший викладач кафедри",
+  "idDepartment": 1
+}
