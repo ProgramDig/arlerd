@@ -14,6 +14,7 @@ import { SpecialtyModule } from './specialty/specialty.module';
 import * as process from "process";
 import { DepartmentModule } from "./department/department.module";
 import { PositionModule } from './position/position.module';
+import { DisciplineModule } from "./discipline/discipline.module";
 
 @Module({
   controllers: [],
@@ -33,7 +34,8 @@ import { PositionModule } from './position/position.module';
     TestModule,
     SpecialtyModule,
     DepartmentModule,
-    PositionModule
+    PositionModule,
+    DisciplineModule
   ],
   exports: []
 })

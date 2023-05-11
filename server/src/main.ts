@@ -15,13 +15,13 @@ const start = async (): Promise<void> => {
   const config: Omit<OpenAPIObject, "paths"> = new DocumentBuilder()
     .setTitle("ДОКУМЕНТАЦІЯ ДО ПРОГРАМНОГО МОДУЛЯ СЕРВЕРНОЇ ЧАСТИНИ ПІДСИСТЕМИ ОБЛІКУ НАВЧАЛЬНОГО НАВАНТАЖЕННЯ НАУКОВО-ПЕДАГОГІЧНИХ ПРАЦІВНИКІВ КАФЕДРИ ІНФОРМАЦІЙНОЇ СИСТЕМИ ОРГАНІЗАЦІЇ ОСВІТНЬОЇ ДІЯЛЬНОСТІ ВВНЗ НА ОСНОВІ ПЛАТФОРМИ NODE.JS.")
     .setDescription("Документація до серверної частини додатку на оснсові Node.js (Nest)")
-    .setVersion("1.1.0")
+    .setVersion("1.1.0.1")
     .addTag("Військовий інститут телекомунікацій та інформатизації імені Героїв Крут")
     .build();
   const document: OpenAPIObject = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("/api/docs", app, document);
 
-  await app.listen(PORT, (): void => Logger.log(`Local port [${PORT}] Server started... `));
+  await app.listen(PORT, (): void => Logger.log(`Local port [${PORT}] Server started...`));
 };
 
 start().catch(e => console.log(e));
