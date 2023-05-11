@@ -41,7 +41,7 @@ export class Discipline extends Model<Discipline, DisciplineCreateAttrs> {
   @BelongsTo(() => Department)
   department: Department;
 
-  @Column({ type: DataType.INTEGER, defaultValue: 0 })
+  @Column({ type: DataType.DOUBLE, defaultValue: 0 })
   creditsECTS: number;
 
   @Column({ type: DataType.INTEGER, defaultValue: 0 })

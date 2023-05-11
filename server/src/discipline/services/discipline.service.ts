@@ -14,6 +14,6 @@ export class DisciplineService {
   }
 
   async getAll(): Promise<Discipline[]> {
-    return await this.disciplineRepository.findAll();
+    return await this.disciplineRepository.findAll({include:{all:true}});
   }
 }
