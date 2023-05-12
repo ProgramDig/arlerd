@@ -16,4 +16,16 @@ export class GroupService {
   async getAll(): Promise<Group[]> {
     return await this.groupRepository.findAll({ include: { all: true } });
   }
+
+  async getOneByPk(id: number): Promise<Group> {
+    return await this.groupRepository.findByPk(id, { include: { all: true } });
+  }
+
+  async getManyByPk(ids: number[]): Promise<Group[]> {
+    const data = [];
+    for (const id of ids) {
+      data.push(await this.groupRepository.findByPk(id, { include: { all: true } }));
+    }
+    return data;
+  }
 }

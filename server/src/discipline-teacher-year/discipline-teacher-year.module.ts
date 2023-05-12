@@ -8,6 +8,6 @@ import { disciplineTeacherYearProviders } from "./providers/discipline-teacher-y
   providers: [DisciplineTeacherYearService, ...disciplineTeacherYearProviders],
   controllers: [DisciplineTeacherYearController],
   imports: [DatabaseModule],
-  exports:[...disciplineTeacherYearProviders]
+  exports:[...disciplineTeacherYearProviders, DisciplineTeacherYearService]
 })
 export class DisciplineTeacherYearModule {}

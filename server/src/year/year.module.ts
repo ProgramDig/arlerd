@@ -7,7 +7,7 @@ import { yearProviders } from "./providers/year.providers";
 @Module({
   controllers: [YearController],
   providers: [YearService, ...yearProviders],
-  exports: [...yearProviders],
+  exports: [...yearProviders, YearService],
   imports: [DatabaseModule]
 })
 export class YearModule {}

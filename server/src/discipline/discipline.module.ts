@@ -8,7 +8,7 @@ import { disciplineProviders } from "./providers/discipline.providers";
   controllers: [DisciplineController],
   providers: [DisciplineService, ...disciplineProviders],
   imports: [DatabaseModule],
-  exports: [...disciplineProviders]
+  exports: [...disciplineProviders, DisciplineService]
 })
 export class DisciplineModule {
 }
