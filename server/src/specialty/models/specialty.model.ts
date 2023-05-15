@@ -13,6 +13,9 @@ export class Specialty extends Model<Specialty, SpecialtyCreationAttrs> {
   @Column({ type: DataType.STRING, allowNull: true })
   name: string
 
+  @Column({ type: DataType.STRING, allowNull: true })
+  shorthand: string
+
   @Column({ type: DataType.INTEGER, allowNull: true })
   code: number
 }

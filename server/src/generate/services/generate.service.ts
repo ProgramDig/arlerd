@@ -28,6 +28,42 @@ export class GenerateService {
     private yearService: YearService) {
   }
 
+  calculatingWorkLoad(discipline: Discipline, group: Group) {
+    // const workLoad = {
+    //   count: group.cadetCount,
+    //   hours: {
+    //     lecture: discipline.semesterLecturesHours,
+    //     groupSeminar: discipline.semesterGroupSeminarHours,
+    //     checkReport: 0,
+    //     holdingTactic: 0,
+    //   },
+    //   load: {
+    //     lectureCount: discipline.semesterLecturesHours * correlationsOrder155.LECTURE_LESSON,
+    //     groupSeminarCount: discipline.semesterGroupSeminarHours * correlationsOrder155.GROUP_LESSON,
+    //   }
+    // }
+
+    const workLoad = {
+      disciplines: [
+        {
+          "name": discipline.nameEducationalComponent,
+          "codeSpecialize": group.specialty.shorthand,
+          "courseStudy": Number(new Date().getFullYear()) - Number(group.course.yearRecruit),
+          "countOfGroup": group.cadetCount,
+          "groupCode": group.groupCode,
+          "totalLectures": discipline.semesterLecturesHours,
+          "totalGroup": discipline.semesterGroupSeminarHours,
+          "totalPractice": discipline.semesterPractiseHours,
+          "verificationLaboratoryWork": 0,
+          "conductingTacticalTraining": 0
+        }
+      ]
+    };
+
+
+    return workLoad;
+  }
+
   async dataProcessor(dto: DataProcessorDto) {
     const { groupsId, idTeacher, idDiscipline, idYear, idDepartment }: DataProcessorDto = dto;
 
@@ -37,11 +73,7 @@ export class GenerateService {
     const discipline: Discipline = await this.disciplineService.getOneByPk(idDiscipline);
     const years: Year = await this.yearService.getOneByPk(idYear);
 
-    const workLoad = {
-
-    }
-
-    return { groups, teacher, department, discipline, years };
+    return this.calculatingWorkLoad(discipline, groups[0]);
   }
 
   generateDocx(data) {
