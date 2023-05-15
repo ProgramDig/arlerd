@@ -6,6 +6,7 @@ import transformLoginData_ from "../../../utils/auth/transformLoginData";
 import {useMessage} from "../../../hooks/message.hook";
 import FormLogin from "../../../components/form/formLogin/FormLogin";
 import {useAuth} from "../../../hooks/auth.hook";
+import {useDispatch} from "react-redux";
 
 
 
@@ -37,7 +38,8 @@ const LoginPage = () => {
         })
         if (auth.login) {
             console.log(res.data.accessToken , res.data.role)
-            auth.login(res.data.accessToken , res.data.role);
+            await auth.login(res.data.accessToken , res.data.role);
+            useDispatch()
             message(res.statusText)
         }
     }

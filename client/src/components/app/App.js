@@ -7,9 +7,8 @@ import {useAuth} from "../../hooks/auth.hook";
 import {useSelector} from "react-redux";
 
 function App() {
-
     const role = useSelector(state => state.role.value);
-    console.log(role)
+
 
     const routes = useRoutes(role)
 

@@ -1,40 +1,37 @@
-// import {createSlice} from "@reduxjs/toolkit";
-//
-// const initialState =
-//     {
-//         id: '',
-//         firstName: '',
-//         secondName: '',
-//         thirdName: '',
-//         rank: '',
-//         degree: '',
-//     }
-//
-// const scientificTeacherSlice = createSlice({
-//     name: 'scientificTeacher',
-//     initialState: {
-//         scientificTeacher: initialState,
-//         scientificTeachers: []
-//     },
-//     reducers: {
-//         setScientificTeacher(state, action) {
-//             state.scientificTeacher = {
-//                 id: action.payload.id,
-//                 firstName: action.payload.firstName,
-//                 secondName: action.payload.secondName,
-//                 thirdName: action.payload.thirdName,
-//                 rank: action.payload.rank,
-//                 degree: action.payload.degree,
-//             }
-//         },
-//         removeScientificTeacher(state) {
-//             state.scientificTeacher = initialState
-//         },
-//         setScientificTeachers(state, action) {
-//             state.scientificTeachers = [...action.payload]
-//         }
-//     }
-// })
-//
-// export const {setScientificTeacher, removeScientificTeacher, setScientificTeachers} = scientificTeacherSlice.actions
-// export default scientificTeacherSlice.reducer
+import {createSlice} from "@reduxjs/toolkit";
+
+const initialState =
+    {
+        id: '',
+        email: '',
+        isActivated: '',
+        login: '',
+        role: '',
+    }
+
+const userSlice = createSlice({
+    name: 'user',
+    initialState: {
+        user: initialState,
+        users: []
+    },
+    reducers: {
+        setUser(state, action) {
+            state.user = {
+                id: action.payload.id,
+                email: action.payload.email,
+                isActivated: action.payload.isActivated,
+                role: action.payload.role
+            }
+        },
+        removeUser(state) {
+            state.user = initialState
+        },
+        setUsers(state, action) {
+            state.users = [...action.payload]
+        }
+    }
+})
+
+export const {setUser, removeUser, setUsers} = userSlice.actions
+export default userSlice.reducer

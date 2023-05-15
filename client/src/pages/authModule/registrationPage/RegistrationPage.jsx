@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 
 import classes from './RegistrationPage.module.scss';
 import {useMessage} from "../../../hooks/message.hook";
@@ -10,14 +10,16 @@ import ScientificTeacherForm
 import {AuthContext} from "../../../context/AuthContext";
 import axiosInstance from "../../../utils/axios";
 import useAxiosFunction from "../../../hooks/axiosFunction.hook";
-import {createSlice} from "@reduxjs/toolkit";
 import dateFormatter from "../../../utils/date/dateFormatter";
 import {useToggle} from "../../../hooks/useToggle";
 import {REGISTRATION_SCIENTIFIC_URL_POST, REGISTRATION_URL_POST} from "../../../data/constants";
+import {useSelector} from "react-redux";
 
 
 const RegistrationPage = () => {
     const [response, error, loading, axiosFetch, clearError] = useAxiosFunction(axiosInstance);
+    const user = useSelector(state => state.user.value)
+
     const message = useMessage()
     const navigate = useNavigate()
     const auth = useContext(AuthContext);
@@ -39,9 +41,10 @@ const RegistrationPage = () => {
         secondName: '',
         thirdName: '',
         dateOfBirth: '',
-        phoneNumber: '',
-        rank: '',
-        degree: ''
+        phoneNumber: '+38',
+        idRank: '',
+        idDegree: '',
+        "idUserLogin": user.id
     })
 
 
@@ -60,8 +63,8 @@ const RegistrationPage = () => {
     const registrationHandlerScientific = async () => {
 
         if (scientificTeacher.firstName === '' || scientificTeacher.secondName === '' ||
-            scientificTeacher.thirdName === '' || scientificTeacher.rank === ''
-            || scientificTeacher.degree === '') {
+            scientificTeacher.thirdName === '' || scientificTeacher.idRank === ''
+            || scientificTeacher.idDegree === '') {
             return message("Ведіть дані у обов'язкові поля");
         }
         const res = await axiosFetch({
@@ -72,6 +75,8 @@ const RegistrationPage = () => {
                 ...scientificTeacher
             }
         })
+
+        console.log(res)
 
     }
 

@@ -1,9 +1,11 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
 
-const Links = (role) => {
+
+
+const Links = ({role}) => {
     switch (role) {
-        case 'ADMIN':
+        case 1:
             return (
                 <>
                     <li><NavLink to={'/admin'}>Адмін панель</NavLink></li>
@@ -13,7 +15,7 @@ const Links = (role) => {
                     <li><NavLink to={'/main'}>Основний</NavLink></li>
                 </>
             )
-        case 'DEPARTMENT_HEAD':
+        case 3:
             return (
                 <>
                     <li><NavLink to={'/department-head'}>depart-head</NavLink></li>
@@ -21,7 +23,7 @@ const Links = (role) => {
                     <li><NavLink to={'/main'}>main</NavLink></li>
                 </>
             )
-        case 'SCIENTIFIC_EMPLOYER':
+        case 2:
             return (
                 <>
                     <li><NavLink to={'/scientific-employer'}>scientific-employer</NavLink></li>
@@ -29,7 +31,7 @@ const Links = (role) => {
                     <li><NavLink to={'/main'}>main</NavLink></li>
                 </>
             )
-        case 'TEACHER':
+        case 4:
             return (
                 <>
                     <li><NavLink to={'/teacher'}>teacher</NavLink></li>
