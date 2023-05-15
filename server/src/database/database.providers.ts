@@ -9,6 +9,17 @@ import { Degrees } from "../degrees/models/degrees.model";
 import { Tokens } from "../tokens/models/tokens.model";
 import { Test } from "../test/test.model";
 import { Specialty } from "../specialty/models/specialty.model";
+import { Department } from "../department/models/department.model";
+import { Position } from "../position/models/position.model";
+import { Discipline } from "../discipline/models/discipline.model";
+import { Year } from "../year/models/year.model";
+import { TeacherPosition } from "../teacher-position/model/teacher-position.model";
+import { DisciplineTeacherYear } from "../discipline-teacher-year/models/discipline-teacher-year.model";
+import { Course } from "../course/models/course.model";
+import { Group } from "../group/models/group.model";
+import {
+  GroupDisciplineTeacherYear
+} from "../group-discipline-teacher-year/models/group-discipline-teacher-year.model";
 
 export const databaseProviders: Provider[] = [
   {
@@ -30,7 +41,16 @@ export const databaseProviders: Provider[] = [
         Degrees,
         Tokens,
         Test,
-        Specialty
+        Specialty,
+        Department,
+        Position,
+        Discipline,
+        Year,
+        TeacherPosition,
+        DisciplineTeacherYear,
+        Course,
+        Group,
+        GroupDisciplineTeacherYear
       ]);
       await sequelize.sync();
       return sequelize;

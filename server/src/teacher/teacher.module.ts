@@ -12,7 +12,7 @@ import { UsersLoginModule } from "../users-login/users-login.module";
   imports: [DatabaseModule, RanksModule, DegreesModule, UsersLoginModule],
   controllers: [TeacherController],
   providers: [TeacherService, ...teacherProviders],
-  exports: [...teacherProviders]
+  exports: [...teacherProviders, TeacherService]
 })
 export class TeacherModule {
 }

@@ -1,0 +1,85 @@
+export const correlationsOrder155 = {
+  LECTURE_LESSON: 1,
+  GROUP_LESSON: 1,
+  SEMINAR_LESSON: 1,
+  GROUP_EXERCISE: 1,
+  INDEPENDENT_WORK: 1,
+  LABORATORY_LESSON: 1,
+  PRACTISE_LESSON: 1,
+  CHECK_REPORT: 1, // max 20 on one discipline
+  CHECK_PRACTICE_WORK: 1, // max 20 on one discipline
+  TACTICAL_LESSON: 1,
+  HOLDING_CONSULTATION: {
+    LECTURE: 1.15,
+    OTHER_LESSON: 1.10
+  },
+  MANAGEMENT_WORK: {
+    COURSE_PROJECT: 6,
+    WORK: 8,
+    TASK: 10,
+    COMMISSIONER: 0.5
+  },
+  CHECK: {
+    CONTROL_WORK: 0.5, // на одного
+    RGR: 0.5,
+    TEST: 0.5
+  },
+  CONSULTATION_BEFORE_EXAM: {
+    GROUP: 2,
+    FLOW: 2
+  },
+  HOLDING: {
+    TEST: 0.33, // на кожного
+    EXAM: 0.5,
+    COMMISSIONER: 0.5
+  },
+  MANAGEMENT_PRACTICE: {
+    GROUP: 1
+  },
+  PROTECTING_REPORTS: {
+    REPORT: 0.5 // на один
+  },
+  MANAGEMENT_GRADUATE_WORK_BACHELOR: {
+    WORK: 30,
+    MANAGEMENT: 25,
+    REVEIVING: 3,
+    CONSULTATION: 2
+  },
+  MANAGEMENT_GRADUATE_WORK_MASTER: {
+    WORK: 60,
+    MANAGEMENT: 50,
+    REVEIVING: 6,
+    CONSULTATION: 4
+  },
+  MANAGEMENT_GRADUATE_WORK_SPECIALIST: {
+    WORK: 50,
+    MANAGEMENT: 40,
+    REVEIVING: 6,
+    CONSULTATION: 4
+  },
+  MANAGEMENT_EXTERN: 20, // на одного
+  CONDUCTING_FOREIGN_LANGUAGE: {
+    PROFILE_LANG: 3,
+    DEFAULT: 2
+  },
+  CONDUCTING_EXAM_DEFENSE: {
+    EXAM: 0.5, // на одного
+    COMPLEX_EXAM: 0.75,
+    COMISION: 6 // max 6 в день
+  },
+  ORAL_ENTRANCE_EXAM: 0.25, // на одного
+  WRITTEN_ENTRANCE_EXAM: {
+    FLOW: 4, // на 1 потік (100-120 людей)
+    CHECK_ONE_WORK: 0.5 // одна робота
+  },
+  RECHECK_ENTRANCE_CHECK_ONE_WORK: 0.15, // max 5%
+  HOLDING_LESSON_UP_COURSE: 1,
+  MANAGEMENT_INDEPENDENT_GRADUATE_WORK: 30, // на рік
+  HOLDING_EXAM_ADJUNCT: 1, // на одного
+  HOLDING_CANDIDATE_EXAM: 1, // на одного
+  PEER_REVIEW_ADJUNCT: {
+    ABSTRACT: 2,
+    REPORT: 8
+  },
+  MANAGEMENT_COUNSELLING_ADJUNCTS: 50 // на одного
+};
