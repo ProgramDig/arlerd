@@ -17,6 +17,9 @@ export class Group extends Model<Group, GroupCreateAttrs> {
   @Column({ type: DataType.STRING, allowNull: true })
   name: string;
 
+  @Column({ type: DataType.STRING, allowNull: true })
+  groupCode: string
+
   @Column({ type: DataType.INTEGER, allowNull: true })
   cadetCount: number;
 
