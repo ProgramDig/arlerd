@@ -7,12 +7,13 @@ import {useAuth} from "../../hooks/auth.hook";
 import {useSelector} from "react-redux";
 
 function App() {
+
     const role = useSelector(state => state.role.value);
-    const role = "ADMIN";
-    const routes = useRoutes({role})
+    console.log(role)
+
+    const routes = useRoutes(role)
 
     const {login, logout} = useAuth();
-
     return (
         <div className="App">
             <AuthContext.Provider value={{ login, logout }}>

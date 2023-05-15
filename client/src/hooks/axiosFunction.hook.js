@@ -45,7 +45,7 @@ const useAxiosFunction = () => {
 
     }, [controller]);
 
-    return [response, error, loading, axiosFetch, clearError];
+    return [response, error, loading, axiosFetch, clearError ];
 }
 
 

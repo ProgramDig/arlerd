@@ -13,7 +13,7 @@ import RegistrationPage from "../pages/authModule/registrationPage/RegistrationP
 
 const RoutesHook = ({role}) => {
     switch (role) {
-        case 'ADMIN':
+        case '1':
             return (
                 <Routes>
                     <Route path={'/admin'} element={<AdminPage/>} exact/>
@@ -26,7 +26,7 @@ const RoutesHook = ({role}) => {
                     <Route path={'*'} element={<Navigate to='/main' replace/>}/>
                 </Routes>
             )
-        case 'DEPARTMENT_HEAD':
+        case '3':
             return (
                 <Routes>
                     <Route path={'/department-head'} element={<DepartHeadPage/>} exact/>
@@ -37,7 +37,7 @@ const RoutesHook = ({role}) => {
                     <Route path={'*'} element={<Navigate to='/main' replace/>}/>
                 </Routes>
             )
-        case 'SCIENTIFIC_EMPLOYER':
+        case '2':
             return (
                 <Routes>
                     <Route path={'/scientific-employer'} element={<ScientificEmployerPage/>} exact/>
@@ -48,7 +48,7 @@ const RoutesHook = ({role}) => {
                     <Route path={'*'} element={<Navigate to='/main' replace/>}/>
                 </Routes>
             )
-        case 'TEACHER':
+        case '4':
             return (
                 <Routes>
                     <Route path={'/teacher'} element={<TeacherPage/>} exact/>

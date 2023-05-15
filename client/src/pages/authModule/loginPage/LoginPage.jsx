@@ -11,7 +11,8 @@ import {useAuth} from "../../../hooks/auth.hook";
 
 const LoginPage = () => {
     const auth = useAuth()
-    const [response, error, loading, axiosFetch, clearError] = useAxiosFunction(axiosInstance);
+    const axiosResponse = useAxiosFunction(axiosInstance);
+    const [response, error, loading, axiosFetch, clearError] = axiosResponse;
     const message = useMessage()
 
 
@@ -26,7 +27,7 @@ const LoginPage = () => {
             return alert("Ведіть дані у форму");
         }
         const postData = transformLoginData_(userLoginDto);
-        await axiosFetch({
+        const res = await axiosFetch({
             axiosInstance: axiosInstance,
             method: 'POST',
             url: '/auth/login',
@@ -34,9 +35,10 @@ const LoginPage = () => {
                 ...postData
             }
         })
-
         if (auth.login) {
-           await auth.login(response.data.accessToken, response.data.role);
+            console.log(res.data.accessToken , res.data.role)
+            auth.login(res.data.accessToken , res.data.role);
+            message(res.statusText)
         }
     }
 

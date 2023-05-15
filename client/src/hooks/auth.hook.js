@@ -1,5 +1,5 @@
 import {removeToken, setToken} from "../store/slices/tokenSlice";
-import {removeRole, setRole} from "../store/slices/roleSlice";
+import { setRole, removeRole} from "../store/slices/roleSlice";
 import {useCallback, useEffect} from "react";
 import {useDispatch} from "react-redux";
 
@@ -7,10 +7,9 @@ const LOCALSTORAGE_NAME = "User";
 
 export const useAuth = () => {
     const dispatch = useDispatch();
-
     const login = useCallback((jwtToken , role) => {
         dispatch(setToken(jwtToken));
-        dispatch(setRole(role))
+        dispatch(setRole(role));
         localStorage.setItem(LOCALSTORAGE_NAME, JSON.stringify({token: jwtToken, role: role}));
     }, []);
 
