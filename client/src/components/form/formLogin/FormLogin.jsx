@@ -1,9 +1,7 @@
 import React from 'react';
 import './FormLogin.module.scss'
 import {useNavigate} from "react-router-dom";
-import userLoginPicture from '../../../../assets/images/userLoginPicture.png'
-import SpinnerPreLoader from "../../../ui/loaders/spinnerPreLoader/SpinnerPreLoader";
-import LinearPreLoader from "../../../ui/loaders/linearPreLoader/LinearPreLoader";
+import userLoginPicture from '../../../assets/images/userLoginPicture.png'
 
 
 const FormLogin = ({setForm, loginHandler, loading , form }) => {
@@ -15,14 +13,13 @@ const FormLogin = ({setForm, loginHandler, loading , form }) => {
         })
     }
 
-    const onSumbit = async (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-         loginHandler()
-        navigate('/main')
+         await loginHandler();
     }
 
     return (
-        <form className={'form no-select'} onSubmit={onSumbit} method={'POST'}>
+        <form className={'form no-select'} onSubmit={onSubmit} method={'POST'}>
             <div className="card-panel z-depth-5">
                 <div className="rowmargin">
                     <div className="col s12 m12 l12 center no-select">
@@ -43,19 +40,16 @@ const FormLogin = ({setForm, loginHandler, loading , form }) => {
                     <div className="input-field">
                         <input type="password" name="password" id="Idpassword"
                                onChange={onChangeInput}
-                               value={form.password}/>
+                               value={form.password}
+                                autoComplete={"on"}/>
                         <label htmlFor="Idpassword">Пароль</label>
                     </div>
                 </div>
-
                 <div className="center">
                     <input type="submit" value="Вхід" name="login"
-
                            className="btn waves-effect waves-light "
                            style={{width: "100%", backgroundColor: "darkgreen"}}/>
                 </div>
-                <LinearPreLoader loading={loading} style={{width : '100%'}}/>
-
 
                 <div className="" style={{fontSize: "14px", cursor: 'pointer'}}><br/>
                     <a className="left"

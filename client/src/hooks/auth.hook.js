@@ -8,7 +8,7 @@ const LOCALSTORAGE_NAME = "User";
 export const useAuth = () => {
     const dispatch = useDispatch();
 
-    const login = useCallback((jwtToken, role) => {
+    const login = useCallback((jwtToken , role) => {
         dispatch(setToken(jwtToken));
         dispatch(setRole(role))
         localStorage.setItem(LOCALSTORAGE_NAME, JSON.stringify({token: jwtToken, role: role}));

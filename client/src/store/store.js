@@ -5,6 +5,7 @@ import scientificTeacherSlice from "./slices/scientificTeacherSlice";
 
 export const store = configureStore({
     reducer: {
+        // user: userSlice,
         scientificTeacher: scientificTeacherSlice,
         token : tokenSlice,
         role: roleSlice

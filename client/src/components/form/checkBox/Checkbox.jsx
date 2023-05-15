@@ -12,6 +12,7 @@ const Checkbox = ({
     const [checkedHead, setCheckedHead] = useState(false)
     const [checkedEmployer, setCheckedEmployer] = useState(false)
 
+
     useEffect(() => {
         if (checkBoxVal) {
             switch (checkBoxVal) {

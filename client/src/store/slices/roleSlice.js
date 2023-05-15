@@ -5,6 +5,7 @@ const initialState = {
     value: ''
 };
 
+
 const roleSlice = createSlice({
     name: 'role',
     initialState: initialState,

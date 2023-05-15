@@ -1,9 +1,8 @@
-
+import {ROOT_ROUTE} from '../../data/constants'
 import axios  from "axios";
-const BASE_URL = 'http://localhost:5000'
 
 export default axios.create({
-    baseURL:BASE_URL,
+    baseURL:ROOT_ROUTE,
     timeout: 1000,
     headers: {
         'Content-Type': 'application/json',

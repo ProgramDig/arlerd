@@ -1,32 +1,30 @@
-import React, {useContext, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 
 import classes from './RegistrationPage.module.scss';
 import {useMessage} from "../../../hooks/message.hook";
-import axios from 'axios';
-import {ROOT_ROUTE} from '../../../data/constants'
 
 import {useNavigate} from "react-router-dom";
-import FormRegistration from "../../../components/form/formSelect/formRegistration/FormRegistration";
-import preLoader from "../../../components/ui/loaders/spinnerPreLoader/SpinnerPreLoader";
+import FormRegistration from "../../../components/form/formRegistration/FormRegistration";
 import ScientificTeacherForm
-    from "../../../components/form/formSelect/formRegistration/formScientificTeacher/ScientificTeacherForm";
+    from "../../../components/form/formRegistration/formScientificTeacher/ScientificTeacherForm";
 import {AuthContext} from "../../../context/AuthContext";
-import checkbox from "../../../components/form/checkBox/Checkbox";
+import axiosInstance from "../../../utils/axios";
+import useAxiosFunction from "../../../hooks/axiosFunction.hook";
+import {createSlice} from "@reduxjs/toolkit";
+import dateFormatter from "../../../utils/date/dateFormatter";
+import {useToggle} from "../../../hooks/useToggle";
+import {REGISTRATION_SCIENTIFIC_URL_POST, REGISTRATION_URL_POST} from "../../../data/constants";
 
 
 const RegistrationPage = () => {
+    const [response, error, loading, axiosFetch, clearError] = useAxiosFunction(axiosInstance);
     const message = useMessage()
-    const url = ROOT_ROUTE;
-    const [loading , setLoading] = useState(false)
     const navigate = useNavigate()
     const auth = useContext(AuthContext);
 
-    const [checkBoxVal, setCheckBoxVal] = useState('TEACHER')
+    const [checkBoxVal, setCheckBoxVal] = useState('TEACHER');
 
-    const [rank, setRank] = useState('')
-    const [degree, setDegree] = useState('')
-
-    const [regPageToggle, setRegPageToggle] = useState(false);
+    const [regPageToggle, setRegPageToggle] = useToggle(false);
 
     const [userDTOForm, setUserDTOForm] = useState({
         email: '',
@@ -40,9 +38,12 @@ const RegistrationPage = () => {
         firstName: '',
         secondName: '',
         thirdName: '',
-        rank: rank,
-        degree: degree
+        dateOfBirth: '',
+        phoneNumber: '',
+        rank: '',
+        degree: ''
     })
+
 
     const setFormRoleHandler = (value) => {
         setUserDTOForm({...userDTOForm, role: value})
@@ -52,29 +53,60 @@ const RegistrationPage = () => {
         setCheckBoxVal(value)
     }
 
-
-    const registrationHandler = async (url,formData) => {
-            if (userDTOForm.role === null || userDTOForm.email === '' ||
-                userDTOForm.password === '' || userDTOForm.rePassword === ''){
-                return message("Ведіть дані у форму");
-            }
-            if (userDTOForm.password !== userDTOForm.rePassword){
-                return message("Старий та новий паролі не збігаються");
-            }
-        try {
-            const response = await axios.post(url , userDTOForm)
-            if (auth.login) {
-                auth.login(response.data.token, response.data.role);
-            }
-            if (!response.data.error){
-                setRegPageToggle(prevState => !prevState)
-            }
-        } catch (e) {
-            const { data } = e.response;
-            console.log(data);
-            message(data.message);
-        }
+    const setDatePickerValHandler = (value) => {
+        setScientificTeacher({...scientificTeacher, dateOfBirth: value ? dateFormatter(value) : ''})
     }
+
+    const registrationHandlerScientific = async () => {
+
+        if (scientificTeacher.firstName === '' || scientificTeacher.secondName === '' ||
+            scientificTeacher.thirdName === '' || scientificTeacher.rank === ''
+            || scientificTeacher.degree === '') {
+            return message("Ведіть дані у обов'язкові поля");
+        }
+        const res = await axiosFetch({
+            axiosInstance: axiosInstance,
+            method: 'POST',
+            url: REGISTRATION_SCIENTIFIC_URL_POST,
+            requestConfig: {
+                ...scientificTeacher
+            }
+        })
+
+    }
+
+
+    const registrationHandler = async () => {
+        if (userDTOForm.role === null || userDTOForm.email === '' ||
+            userDTOForm.password === '' || userDTOForm.rePassword === '') {
+            return message("Ведіть дані у форму");
+        }
+        if (userDTOForm.password !== userDTOForm.rePassword) {
+            return message("Старий та новий паролі не збігаються");
+        }
+
+        const res = await axiosFetch({
+            axiosInstance: axiosInstance,
+            method: 'POST',
+            url: REGISTRATION_URL_POST,
+            requestConfig: {
+                ...userDTOForm
+            }
+        })
+
+        if (res.status >= 200 && res.status <= 300) {
+            setRegPageToggle(prevState => !prevState)
+        }
+
+        // if (auth.login) {
+        //     auth.login(response.data.token.accessToken, response.data.role);
+        // }
+    }
+
+    useEffect(() => {
+        message(error)
+        clearError()
+    }, [error, message, clearError])
 
     const renderFlag = !regPageToggle
         ?
@@ -85,21 +117,20 @@ const RegistrationPage = () => {
                           registrationHandler={registrationHandler}
                           checkBoxVal={checkBoxVal}
                           loading={loading}
-                          setRegPageToggle={setRegPageToggle}/>
+        />
         :
         <ScientificTeacherForm scientificTeacher={scientificTeacher}
                                setScientificTeacher={setScientificTeacher}
-                               registrationHandler={registrationHandler}
+                               registrationHandlerScientific={registrationHandlerScientific}
                                loading={loading}
-                               checkBoxVal={checkBoxVal}
-                               setRegPageToggle={setRegPageToggle}/>
+                               setRegPageToggle={setRegPageToggle}
+                               setDatePickerValHandler={setDatePickerValHandler}
+        />
 
     return (
         <div className={classes.registrationPage}>
             {renderFlag}
         </div>
     )
-};
-
-
+}
 export default RegistrationPage;

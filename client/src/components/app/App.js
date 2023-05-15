@@ -1,6 +1,6 @@
 import './App.scss';
 import NavBar from "../ui/header/navBar/NavBar";
-import {AuthContext} from "../../context/AuthContext";
+import {AuthContext} from "../../context/AuthContext"
 import useRoutes from "../../hooks/routes.hook";
 import Footer from "../ui/footer/Footer";
 import {useAuth} from "../../hooks/auth.hook";
@@ -8,6 +8,7 @@ import {useSelector} from "react-redux";
 
 function App() {
     const role = useSelector(state => state.role.value);
+    const role = "ADMIN";
     const routes = useRoutes({role})
 
     const {login, logout} = useAuth();

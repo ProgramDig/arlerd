@@ -1,6 +1,7 @@
-import {useState, useEffect} from "react";
+import {useState, useEffect, useCallback} from "react";
 
 const useAxios = (configObj) => {
+
     const {
         axiosInstance,
         method,
@@ -16,33 +17,46 @@ const useAxios = (configObj) => {
     const refetch = () => setReload(prev => prev + 1);
 
     useEffect(() => {
-        //let isMounted = true;
-        const controller = new AbortController();
-
+        let isMounted = true;
         const fetchData = async () => {
             try {
                 const res = await axiosInstance[method.toLowerCase()](url, {
                     ...requestConfig,
-                    signal: controller.signal
-                });
+                })
                 console.log(res);
-                setResponse(res.data);
+                if (isMounted) {
+                   await setResponse(res);
+
+                }
             } catch (err) {
-                if (err.name === 'AbortError')
-                    console.log('Request was cancelled');
-                console.log(err.message);
-                setError(err.message);
+                if (isMounted) {
+                    if (err.name === 'AbortError')
+                        console.log('Request was cancelled');
+                    console.log(err.message);
+                    setError(err.message);
+                }
             } finally {
                 setLoading(false);
             }
         }
 
         // call the function
-        fetchData();
+       async function qwe(){
+            if(isMounted){
+               await fetchData()
+            }
+        }
+
+        qwe()
+
+
+
 
         // useEffect cleanup function
-        return () => controller.abort();
-        // eslint-disable-next-line
+        return () => {
+            isMounted = false;
+        };
+
     }, [reload]);
 
     return [response, error, loading, refetch];
