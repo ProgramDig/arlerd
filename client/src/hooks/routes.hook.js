@@ -9,11 +9,12 @@ import ActivatePage from "../pages/activatePage/ActivatePage";
 import UserAccountPage from "../pages/userAccountPage/UserAccountPage";
 import LoginPage from "../pages/authModule/loginPage/LoginPage";
 import RegistrationPage from "../pages/authModule/registrationPage/RegistrationPage";
+import loginPage from "../pages/authModule/loginPage/LoginPage";
 
 
-const RoutesHook = ({role}) => {
+const RoutesHook = (role) => {
     switch (role) {
-        case '1':
+        case 1:
             return (
                 <Routes>
                     <Route path={'/admin'} element={<AdminPage/>} exact/>
@@ -26,7 +27,7 @@ const RoutesHook = ({role}) => {
                     <Route path={'*'} element={<Navigate to='/main' replace/>}/>
                 </Routes>
             )
-        case '3':
+        case 3:
             return (
                 <Routes>
                     <Route path={'/department-head'} element={<DepartHeadPage/>} exact/>
@@ -37,7 +38,7 @@ const RoutesHook = ({role}) => {
                     <Route path={'*'} element={<Navigate to='/main' replace/>}/>
                 </Routes>
             )
-        case '2':
+        case 2:
             return (
                 <Routes>
                     <Route path={'/scientific-employer'} element={<ScientificEmployerPage/>} exact/>
@@ -48,7 +49,7 @@ const RoutesHook = ({role}) => {
                     <Route path={'*'} element={<Navigate to='/main' replace/>}/>
                 </Routes>
             )
-        case '4':
+        case 4:
             return (
                 <Routes>
                     <Route path={'/teacher'} element={<TeacherPage/>} exact/>

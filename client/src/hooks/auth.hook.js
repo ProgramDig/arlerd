@@ -2,6 +2,7 @@ import {removeToken, setToken} from "../store/slices/tokenSlice";
 import { setRole, removeRole} from "../store/slices/roleSlice";
 import {useCallback, useEffect} from "react";
 import {useDispatch} from "react-redux";
+import {setUser} from "../store/slices/userSlice";
 
 const LOCALSTORAGE_NAME = "User";
 
