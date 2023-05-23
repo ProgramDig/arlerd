@@ -17,4 +17,6 @@ export class DepartmentController {
   getAll(): Promise<Department[]> {
     return this.departmentService.getAll();
   }
+
+
 }

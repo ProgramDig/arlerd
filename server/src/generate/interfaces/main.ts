@@ -1,3 +1,5 @@
+import { correlationsOrder155 } from "../generate.constant";
+
 interface Discipline {
   name: string;
   codeSpecialize: string;
@@ -67,4 +69,32 @@ interface Department {
   upToNextYear: string;
   disciplinesNextSemester: Discipline[];
   semester2: Semester;
+}
+
+export interface Item {
+  _id: number,
+  name: string,
+  codeSpecialize: string,
+  courseStudy: number,
+  countOfGroup: number,
+  groupCode: string,
+  totalLectures: number,
+  totalGroup: number,
+  totalPractice: number,
+  verificationLaboratoryWork: number,
+  conductingTacticalTraining: number,
+  _totalHours: number,
+}
+
+export interface LoadItem {
+  holdingConsultation: number,
+  guidelinesDefenseTermPapers:number,
+  checkingControl:number,
+  conductingExam:number,
+  managementMilitaryInternships: number,
+  guidanceConsultationReview: number,
+  defenseCertificationWorks: number,
+  conductingComprehensiveExaminations: number,
+  conductingOtherWorks: number,
+  total: number
 }

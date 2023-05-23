@@ -2,12 +2,38 @@ POST http://localhost:5000/generate/data-processor HTTP/1.1
 Content-Type: application/json
 
 {
-  "groupsId": [
-    1,
-    2
-  ],
-  "idDiscipline": 1,
   "idTeacher": 1,
   "idYear": 1,
-  "idDepartment": 5
+  "idDepartment": 1,
+  "firstSemester": {
+    "data": [
+      {
+        "idDiscipline": 1,
+        "idGroups": [
+          1
+        ]
+      },
+      {
+        "idDiscipline": 2,
+        "idGroups": [
+          1,2
+        ]
+      }
+    ]
+  },
+  "secondSemester": {
+    "data": [
+      {
+        "idDiscipline": 2,
+        "idGroups": [
+          1
+        ]
+      }, {
+        "idDiscipline": 1,
+        "idGroups": [
+          2
+        ]
+      }
+    ]
+  }
 }

@@ -7,7 +7,7 @@ import { positionProviders } from "./providers/position.providers";
 @Module({
   controllers: [PositionController],
   providers: [PositionService, ...positionProviders],
-  exports: [...positionProviders],
+  exports: [...positionProviders, PositionService],
   imports: [DatabaseModule]
 })
 export class PositionModule {

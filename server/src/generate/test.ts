@@ -68,7 +68,7 @@ const data = {
   "semesterConductingTacticalTraining": 0,
   "disciplinesLoad": [
   {
-    "holdingСonsultations": 0.09,
+    "holdingConsultation": 0.09,
     "guidelinesDefenseTermPapers": 0,
     "checkingControl": 12.5,
     "conductingExam": 42.5,
@@ -80,7 +80,7 @@ const data = {
     "total": 94.6
   },
   {
-    "holdingСonsultations": 0.09,
+    "holdingConsultation": 0.09,
     "guidelinesDefenseTermPapers": 0,
     "checkingControl": 12.5,
     "conductingExam": 42.5,
@@ -92,7 +92,7 @@ const data = {
     "total": 94.6
   },
   {
-    "holdingСonsultations": 0.09,
+    "holdingConsultation": 0.09,
     "guidelinesDefenseTermPapers": 0,
     "checkingControl": 12.5,
     "conductingExam": 42.5,
@@ -167,7 +167,7 @@ const data = {
   "yearConductingTacticalTraining": 0,
   "disciplinesNextSemesterLoad": [
   {
-    "holdingСonsultations": 0.09,
+    "holdingConsultation": 0.09,
     "guidelinesDefenseTermPapers": 0,
     "checkingControl": 12.5,
     "conductingExam": 42.5,
@@ -178,7 +178,7 @@ const data = {
     "conductingOtherWorks": 0,
     "total": 94.6
   },{
-    "holdingСonsultations": 0.09,
+    "holdingConsultation": 0.09,
     "guidelinesDefenseTermPapers": 0,
     "checkingControl": 12.5,
     "conductingExam": 42.5,
@@ -189,7 +189,7 @@ const data = {
     "conductingOtherWorks": 0,
     "total": 94.6
   },{
-    "holdingСonsultations": 0.09,
+    "holdingConsultation": 0.09,
     "guidelinesDefenseTermPapers": 0,
     "checkingControl": 12.5,
     "conductingExam": 42.5,

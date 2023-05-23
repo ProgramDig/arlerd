@@ -21,7 +21,7 @@ export class GroupService {
     return await this.groupRepository.findByPk(id, { include: { all: true } });
   }
 
-  async getManyByPk(ids: number[]): Promise<Group[]> {
+async getManyByPk(ids: number[]): Promise<Group[]> {
     const data = [];
     for (const id of ids) {
       data.push(await this.groupRepository.findByPk(id, { include: { all: true } }));

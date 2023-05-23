@@ -24,4 +24,5 @@ export class Department extends Model<Department, DepartmentCreateAttrs> {
 
   @BelongsTo(() => Specialty)
   specialty: Specialty;
+
 }

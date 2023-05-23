@@ -16,9 +16,13 @@ export class Position extends Model<Position, PositionCreateAttrs> {
   @Column({ type: DataType.STRING, allowNull: true })
   value: string;
 
+  @Column({ type: DataType.BOOLEAN, defaultValue: false })
+  isCommander: boolean;
+
   @ForeignKey(() => Department)
   @Column({ type: DataType.INTEGER, allowNull: true })
   idDepartment: number;
+
 
   @BelongsTo(() => Department)
   department: Department;

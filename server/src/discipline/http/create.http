@@ -1,23 +1,45 @@
 POST http://localhost:5000/discipline/create HTTP/1.1
 Content-Type: application/json
 
+//{
+//  "codeEducationalComponent": "ЗО.03",
+//  "nameEducationalComponent": "Web-технології та Web-дизайн",
+//  "idDepartment": 1,
+//  "creditsECTS": 3.5,
+//  "totalHours": 135,
+//  "semesterHours": 135,
+//  "semesterClassroomHours": 86,
+//  "semesterLecturesHours": 8,
+//  "semesterGroupSeminarHours": 32,
+//  "semesterPractiseHours": 46,
+//  "semesterIndependentHors": 49,
+//  "semesterCourseWorkCount": 1,
+//  "semesterModuleWorkCount": 1,
+//  "semesterRGRWorkCount": 0,
+//  "semesterAbstractCount": 0,
+//  "isSemesterExamControl": true,
+//  "isSemesterTestControl": false,
+//  "semesterCount": 7
+//}
+
 {
-  "codeEducationalComponent": "ЗО.03",
-  "nameEducationalComponent": "Web-технології та Web-дизайн",
+  "codeEducationalComponent": "ЗО.17",
+  "nameEducationalComponent": "Розробка програмного забезпечення для мобільних пристроїв",
   "idDepartment": 1,
-  "creditsECTS": 3.5,
-  "totalHours": 135,
-  "semesterHours": 135,
-  "semesterClassroomHours": 86,
-  "semesterLecturesHours": 8,
-  "semesterGroupSeminarHours": 32,
-  "semesterPractiseHours": 46,
-  "semesterIndependentHors": 49,
-  "semesterCourseWorkCount": 1,
-  "semesterModuleWorkCount": 1,
+  "creditsECTS": 4,
+  "totalHours": 120,
+  "semesterHours": 120,
+  "semesterClassroomHours": 76,
+  "semesterLecturesHours": 16,
+  "semesterGroupSeminarHours": 16,
+  "semesterPractiseHours": 44,
+  "semesterIndependentHors": 44,
+  "semesterCourseWorkCount": 0,
+  "semesterModuleWorkCount": 0,
   "semesterRGRWorkCount": 0,
   "semesterAbstractCount": 0,
   "isSemesterExamControl": true,
   "isSemesterTestControl": false,
-  "semesterCount": 7
+  "semesterCount": 8
 }
+
