@@ -42,19 +42,17 @@ const GenerateCard = ({listGroup, teacherList, disciplineList, payload, setPaylo
         }),
     }))
 
-    const idYear = useSelector(state => state.yearAndDepartmentId.idYear)
-    const idDepartment = useSelector(state => state.yearAndDepartmentId.idDepartment)
-
-    // console.log(idYear,idDepartment)
+    // const yearAndDep = useSelector(state => state.yearAndDepartmentId)
+    // const {idYear, idDepartment} = yearAndDep
+    // const idDepartment = useSelector(state => state.yearAndDepartmentId.idDepartment)
 
     const createPayloadForSubmit = () => {
         //     run through all refs and collect inner info : id, name, ....
-        console.log(idYear)
-        console.log(idDepartment)
+        // console.log(idYear)
         return {
             idTeacher: 1,
-            idYear: Number.parseInt(idYear),
-            idDepartment: Number.parseInt(idDepartment),
+            // idYear: Number.parseInt(idYear),
+            // idDepartment: Number.parseInt(idDepartment),
             firstSemester: {
                 data: [
                     {
