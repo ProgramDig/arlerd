@@ -2,7 +2,7 @@ import React from 'react';
 
 const ScientificEmployerPage = () => {
     return (
-        <div>
+        <div className={'container'}>
             <h1>ScientificPage</h1>
         </div>
     );

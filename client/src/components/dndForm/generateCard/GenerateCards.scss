@@ -1,0 +1,51 @@
+
+.parent {
+    display: grid;
+    grid-template-columns: 1fr repeat(2, 1fr);
+    grid-template-rows: 2fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 10px;
+    padding: 0.5em 2em;
+  }
+
+  .teacher-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .parent2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 0.5fr;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+  }
+
+  .box {
+    border-radius: 10%;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding-left: 8px;
+  }
+
+  .colGroup {
+    box-shadow: #5fb4ff;
+    background-color: whitesmoke;
+    border-radius: 5%;
+  }
+  .groupCards {
+
+  }
+
+  .scroll-container {
+    height: auto;
+    overflow: auto;
+  }
+
+
+

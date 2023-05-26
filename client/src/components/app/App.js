@@ -17,9 +17,7 @@ function App() {
         <div className="App">
             <AuthContext.Provider value={{ login, logout }}>
                 {!!role && <NavBar/>}
-                <div className={'container'}>
                     {routes}
-                </div>
                 {!!role && <Footer/>}
             </AuthContext.Provider>
         </div>

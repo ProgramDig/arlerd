@@ -2,9 +2,8 @@ import React from 'react';
 
 const UserAccountPage = () => {
     return (
-        <div>
+        <div className={'container'}>
             <h1>userAccPage</h1>
-
         </div>
     );
 };

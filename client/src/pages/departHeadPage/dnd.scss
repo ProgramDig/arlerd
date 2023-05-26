@@ -1,0 +1,12 @@
+  @import "../../../node_modules/materialize-css";
+
+
+  .dnd {
+    overflow: auto;
+    margin: 20px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    font-family: "-apple-system";
+    font-weight: bolder;
+  }

@@ -1,15 +1,18 @@
 import {configureStore} from "@reduxjs/toolkit";
 import tokenSlice from "./slices/tokenSlice";
 import roleSlice from "./slices/roleSlice";
-import scientificTeacherSlice from "./slices/scientificTeacherSlice";
-import userSlice from "./slices/userSlice";
+import teacherSlice from "./slices/teacherSlice";
+import disciplineSlice from "./slices/disciplineSlice";
+import groupSlice from "./slices/groupSlice";
 
 export const store = configureStore({
     reducer: {
-        user: userSlice,
-        scientificTeacher: scientificTeacherSlice,
+        group: groupSlice,
+        discipline: disciplineSlice,
+        teacher: teacherSlice,
         token : tokenSlice,
         role: roleSlice
     },
+    devTools: true
 })
 export default store;

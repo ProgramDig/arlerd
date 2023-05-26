@@ -1,0 +1,17 @@
+@import "materialize-css";
+
+.teacherCol {
+  min-width: max-content; /* Задайте нужную ширину для колонки */
+  max-height: 85vh; /* Задайте нужную высоту для колонки */
+  overflow-y: auto; /* Включает вертикальную прокрутку */
+}
+.groupCol{
+  min-width: max-content; /* Задайте нужную ширину для колонки */
+  max-height: 85vh; /* Задайте нужную высоту для колонки */
+  overflow-y: auto; /* Включает вертикальную прокрутку */
+}
+.disciplineCol {
+  min-width: max-content; /* Задайте нужную ширину для колонки */
+  max-height: 85vh; /* Задайте нужную высоту для колонки */
+  overflow-y: auto; /* Включает вертикальную прокрутку */
+}

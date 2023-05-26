@@ -14,6 +14,7 @@ const ScientificTeacherForm =
          loading,
          setDatePickerValHandler,
          setPhoneNumberValHandler,
+
      }) => {
         const options = {
             format: 'yyyy-mm-dd',
@@ -43,12 +44,10 @@ const ScientificTeacherForm =
         }
 
 
-        const onSubmit = async (e) => {
+        const onSubmit = (e) => {
             e.preventDefault();
-            await registrationHandlerScientific();
-
+            registrationHandlerScientific();
         }
-
 
         return (
             <form className={`${classes.scientificTeacher} form no-select`} method={'POST'}
@@ -109,14 +108,15 @@ const ScientificTeacherForm =
 
                     <div className="col m12 l12">
                         <div className="input-field">
-                            <input type="number"
-                                   maxLength={10}
+                            <span className="helper-text" data-error="wrong"
+                                  data-success="right">+38(ххх)-хх-хх-ххх</span>
+                            <input type="tel"
+                                   maxLength={13}
                                    name="phoneNumber"
                                    id="phoneNumber"
                                    value={scientificTeacher.phoneNumber}
                                    onChange={onChangeInput}
                             />
-                            <label htmlFor="phoneNumber"><b>Мобільний телефон +38(ххх)-хх-хх-ххх</b></label>
                         </div>
                     </div>
                     <Select
@@ -124,24 +124,23 @@ const ScientificTeacherForm =
                         onChangeInput={onChangeInput}
                         url='/ranks/all'
                         label={'Військове звання'}
-                        nameOfEvent={'rank'}
+                        nameOfEvent={'idRank'}
                     />
                     <Select
                         scientificTeacher={scientificTeacher}
                         onChangeInput={onChangeInput}
                         url={'/degrees/all'}
                         label={'Науковий ступінь'}
-                        nameOfEvent={'degree'}
+                        nameOfEvent={'idDegree'}
                     />
 
                     <div className={"center"}>
-                        <input name="login" type={'submit'}
+                        <input name="registartionScientificTeacher"
+                               value="Зареєструватись"
+                               type={'submit'}
                                disabled={loading}
                                className={"waves-effect waves-light waves-effect waves-light btn"}
-                               style={{width: "100%", backgroundColor: "darkgreen"}}
-                               onClick={() => {
-                                   navigate('/log')
-                               }}>
+                               style={{width: "100%", backgroundColor: "darkgreen"}}>
                         </input>
                     </div>
 

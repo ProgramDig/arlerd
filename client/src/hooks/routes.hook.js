@@ -9,7 +9,6 @@ import ActivatePage from "../pages/activatePage/ActivatePage";
 import UserAccountPage from "../pages/userAccountPage/UserAccountPage";
 import LoginPage from "../pages/authModule/loginPage/LoginPage";
 import RegistrationPage from "../pages/authModule/registrationPage/RegistrationPage";
-import loginPage from "../pages/authModule/loginPage/LoginPage";
 
 
 const RoutesHook = (role) => {

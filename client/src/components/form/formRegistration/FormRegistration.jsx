@@ -16,9 +16,9 @@ const FormRegistration = ({
                           }) => {
     const navigate = useNavigate();
 
-    const onSubmit = async (e) => {
+    const onSubmit = (e) => {
         e.preventDefault()
-        await registrationHandler();
+        registrationHandler();
     }
 
     const onChangeInput = (event) => {
@@ -94,7 +94,9 @@ const FormRegistration = ({
                 />
 
                 <div className={"center"}>
-                    <input value="next form" name="login" type={'submit'}
+                    <input value="До наступної форми"
+                           name="registartion"
+                           type={'submit'}
                            disabled={loading}
                            className={"waves-effect waves-light waves-effect waves-light btn"}
                            style={{width: "100%", backgroundColor: "darkgreen"}}>
@@ -103,6 +105,8 @@ const FormRegistration = ({
 
                 <div className="" style={{fontSize: "14px", cursor: 'pointer'}}><br/>
                     <a className="left"
+                       onClick={ () =>
+                    navigate('/log')}
                     >Здійснити вхід</a>
                 </div>
                 <br/>

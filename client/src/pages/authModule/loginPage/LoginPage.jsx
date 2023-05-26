@@ -9,13 +9,11 @@ import {useAuth} from "../../../hooks/auth.hook";
 import {useDispatch} from "react-redux";
 
 
-
 const LoginPage = () => {
     const auth = useAuth()
     const axiosResponse = useAxiosFunction(axiosInstance);
     const [response, error, loading, axiosFetch, clearError] = axiosResponse;
     const message = useMessage()
-
 
 
     const [userLoginDto, setUserLoginDto] = useState({
@@ -36,12 +34,13 @@ const LoginPage = () => {
                 ...postData
             }
         })
-        if (auth.login) {
-            console.log(res.data.accessToken , res.data.role)
-            await auth.login(res.data.accessToken , res.data.role);
-            useDispatch()
-            message(res.statusText)
+        if (res.status >= 200 && res.status <= 300) {
+            if (auth.login) {
+                await auth.login(res.data.accessToken, res.data.role);
+                message(res.statusText)
+            }
         }
+
     }
 
     useEffect(() => {
@@ -51,7 +50,7 @@ const LoginPage = () => {
 
 
     return (
-        <div className={classes.loginPage}>
+        <div className={classes.loginPage + ' container'}>
             <FormLogin loading={loading} loginHandler={loginHandler}
                        setForm={setUserLoginDto} form={userLoginDto}/>
         </div>

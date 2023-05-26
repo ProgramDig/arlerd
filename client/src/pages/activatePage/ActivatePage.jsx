@@ -2,7 +2,7 @@ import React from 'react';
 
 const ActivatePage = () => {
     return (
-        <div>
+        <div className={'container'}>
             <p>ACTIVATE PAGE</p>
         </div>
     );

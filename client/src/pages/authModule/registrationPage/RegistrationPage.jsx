@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 
 import classes from './RegistrationPage.module.scss';
 import {useMessage} from "../../../hooks/message.hook";
@@ -13,20 +13,22 @@ import useAxiosFunction from "../../../hooks/axiosFunction.hook";
 import dateFormatter from "../../../utils/date/dateFormatter";
 import {useToggle} from "../../../hooks/useToggle";
 import {REGISTRATION_SCIENTIFIC_URL_POST, REGISTRATION_URL_POST} from "../../../data/constants";
-import {useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
+import {setScientificTeacher, setScientificTeachers, setTeacher} from "../../../store/slices/teacherSlice";
 
 
 const RegistrationPage = () => {
     const [response, error, loading, axiosFetch, clearError] = useAxiosFunction(axiosInstance);
-    const user = useSelector(state => state.user.value)
-
+    const dispatch = useDispatch();
     const message = useMessage()
     const navigate = useNavigate()
     const auth = useContext(AuthContext);
 
     const [checkBoxVal, setCheckBoxVal] = useState('TEACHER');
 
-    const [regPageToggle, setRegPageToggle] = useToggle(false);
+    const [userId, setUserId] = useState('')
+
+    const [regPageToggle, setRegPageToggle] = useToggle();
 
     const [userDTOForm, setUserDTOForm] = useState({
         email: '',
@@ -44,12 +46,15 @@ const RegistrationPage = () => {
         phoneNumber: '+38',
         idRank: '',
         idDegree: '',
-        "idUserLogin": user.id
+        idUserLogin: '155'
     })
-
 
     const setFormRoleHandler = (value) => {
         setUserDTOForm({...userDTOForm, role: value})
+    }
+
+    const setScientificUserId = (value) => {
+        setScientificTeacher({...scientificTeacher, idUserLogin: value})
     }
 
     const setCheckBoxValHandler = (value) => {
@@ -67,6 +72,7 @@ const RegistrationPage = () => {
             || scientificTeacher.idDegree === '') {
             return message("Ведіть дані у обов'язкові поля");
         }
+
         const res = await axiosFetch({
             axiosInstance: axiosInstance,
             method: 'POST',
@@ -75,9 +81,12 @@ const RegistrationPage = () => {
                 ...scientificTeacher
             }
         })
-
         console.log(res)
 
+        dispatch(setTeacher(res.data))
+
+
+        navigate('/log')
     }
 
 
@@ -91,21 +100,19 @@ const RegistrationPage = () => {
         }
 
         const res = await axiosFetch({
-            axiosInstance: axiosInstance,
-            method: 'POST',
-            url: REGISTRATION_URL_POST,
-            requestConfig: {
-                ...userDTOForm
+                axiosInstance: axiosInstance,
+                method: 'POST',
+                url: REGISTRATION_URL_POST,
+                requestConfig: {
+                    ...userDTOForm
+                }
             }
-        })
+        )
 
         if (res.status >= 200 && res.status <= 300) {
+            setScientificUserId(res.data.userId)
             setRegPageToggle(prevState => !prevState)
         }
-
-        // if (auth.login) {
-        //     auth.login(response.data.token.accessToken, response.data.role);
-        // }
     }
 
     useEffect(() => {
@@ -133,7 +140,7 @@ const RegistrationPage = () => {
         />
 
     return (
-        <div className={classes.registrationPage}>
+        <div className={classes.registrationPage + ' container'}>
             {renderFlag}
         </div>
     )
