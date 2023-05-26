@@ -5,10 +5,12 @@ import {TYPES} from "../types";
 import M from 'materialize-css'
 import './GenerateCards.scss'
 import uuid from "react-uuid";
+import loginPage from "../../../pages/authModule/loginPage/LoginPage";
+import {useSelector} from "react-redux";
 
 M.AutoInit()
-const GenerateCard = ({listGroup, teacherList, disciplineList, payload,  setPayload
-,idDepartment,idYear}) => {
+const GenerateCard = ({listGroup, teacherList, disciplineList, payload, setPayload}) => {
+
 
     const itemTeacher = useRef(null);
     const itemGroupOne = useRef(null);
@@ -23,8 +25,8 @@ const GenerateCard = ({listGroup, teacherList, disciplineList, payload,  setPayl
 
     const [{canDropDiscipline}, dropDisciplineOne] = useDrop(() => ({
         accept: TYPES.discipline,
-        drop: (item) => (addDropToItems(item.id,item.name,
-             disciplineList, itemDisciplineOne)),
+        drop: (item) => (addDropToItems(item.id, item.name,
+            disciplineList, itemDisciplineOne)),
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
             canDropDiscipline: !!monitor.canDrop(),
@@ -33,19 +35,26 @@ const GenerateCard = ({listGroup, teacherList, disciplineList, payload,  setPayl
 
     const [{canDropDisciplineTwo}, dropDisciplineTwo] = useDrop(() => ({
         accept: TYPES.discipline,
-        drop: (item) => (addDropToItems(item.id,item.name,disciplineList, itemDisciplineTwo)),
+        drop: (item) => (addDropToItems(item.id, item.name, disciplineList, itemDisciplineTwo)),
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
             canDropDisciplineTwo: !!monitor.canDrop(),
         }),
     }))
 
+    const idYear = useSelector(state => state.yearAndDepartmentId.idYear)
+    const idDepartment = useSelector(state => state.yearAndDepartmentId.idDepartment)
+
+    // console.log(idYear,idDepartment)
+
     const createPayloadForSubmit = () => {
         //     run through all refs and collect inner info : id, name, ....
-        const data = {
+        console.log(idYear)
+        console.log(idDepartment)
+        return {
             idTeacher: 1,
-            idYear: idYear,
-            idDepartment: idDepartment,
+            idYear: Number.parseInt(idYear),
+            idDepartment: Number.parseInt(idDepartment),
             firstSemester: {
                 data: [
                     {
@@ -71,13 +80,12 @@ const GenerateCard = ({listGroup, teacherList, disciplineList, payload,  setPayl
                 ]
             }
         };
-        return data
     }
 
 
     const [{canDropGroup}, dropOne] = useDrop(() => ({
         accept: TYPES.group,
-        drop: (item) => (addDropToItems(item.id,item.name,listGroup, itemGroupOne)),
+        drop: (item) => (addDropToItems(item.id, item.name, listGroup, itemGroupOne)),
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
             canDropGroup: !!monitor.canDrop(),
@@ -86,7 +94,7 @@ const GenerateCard = ({listGroup, teacherList, disciplineList, payload,  setPayl
 
     const [{}, dropTwo] = useDrop(() => ({
         accept: TYPES.group,
-        drop: (item) => (addDropToItems(item.id,item.name,listGroup
+        drop: (item) => (addDropToItems(item.id, item.name, listGroup
             , itemGroupTwo)),
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
@@ -96,7 +104,7 @@ const GenerateCard = ({listGroup, teacherList, disciplineList, payload,  setPayl
 
     const [{}, dropThree] = useDrop(() => ({
         accept: TYPES.group,
-        drop: (item) => (addDropToItems (item.id,item.name,listGroup
+        drop: (item) => (addDropToItems(item.id, item.name, listGroup
             , itemGroupThree)),
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
@@ -106,8 +114,8 @@ const GenerateCard = ({listGroup, teacherList, disciplineList, payload,  setPayl
 
     const [{}, dropFour] = useDrop(() => ({
         accept: TYPES.group,
-        drop: (item) => (addDropToItems(item.id,item.name
-            ,listGroup, itemGroupFour)),
+        drop: (item) => (addDropToItems(item.id, item.name
+            , listGroup, itemGroupFour)),
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
             canDrop: !!monitor.canDrop(),
@@ -117,8 +125,8 @@ const GenerateCard = ({listGroup, teacherList, disciplineList, payload,  setPayl
 
     const [{}, dropFive] = useDrop(() => ({
         accept: TYPES.group,
-        drop: (item) => (addDropToItems(item.id,item.name
-            ,listGroup, itemGroupFive)),
+        drop: (item) => (addDropToItems(item.id, item.name
+            , listGroup, itemGroupFive)),
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
             canDrop: !!monitor.canDrop(),
@@ -127,8 +135,8 @@ const GenerateCard = ({listGroup, teacherList, disciplineList, payload,  setPayl
 
     const [{}, dropSix] = useDrop(() => ({
         accept: TYPES.group,
-        drop: (item) => (addDropToItems(item.id,item.name
-            ,listGroup, itemGroupSix)),
+        drop: (item) => (addDropToItems(item.id, item.name
+            , listGroup, itemGroupSix)),
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
             canDrop: !!monitor.canDrop(),
@@ -137,14 +145,14 @@ const GenerateCard = ({listGroup, teacherList, disciplineList, payload,  setPayl
 
     const [{canDropTeacher}, dropTeacher] = useDrop(() => ({
         accept: TYPES.teacher,
-        drop: (item) => (addDropToItems(item.id,item.name, teacherList, itemTeacher)),
+        drop: (item) => (addDropToItems(item.id, item.name, teacherList, itemTeacher)),
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
             canDropTeacher: !!monitor.canDrop(),
         }),
     }))
 
-    const addDropToItems = async (id, name,list, ref) => {
+    const addDropToItems = async (id, name, list, ref) => {
         console.log(id)
         list.filter((item) => id === item.id)
         ref.current = <Card key={id} id={id} name={name}/>
@@ -197,7 +205,8 @@ const GenerateCard = ({listGroup, teacherList, disciplineList, payload,  setPayl
                 </div>
                 <div>
                     <div className={'center'}
-                    >2 Семестр</div>
+                    >2 Семестр
+                    </div>
                     <div className="parent2 row"
                          style={{minHeight: '150px', marginTop: '30px'}}>
                         <div style={{

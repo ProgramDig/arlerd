@@ -25,7 +25,7 @@ function DragNDrop() {
                     dispatch(setGroups(...groups));
                 } else {
                     if (!isFirstResponse) {
-                        message('Завантаження пройшло успішно');
+                        message('Завантаження груп - успішне!');
                     }
                 }
             } catch (error) {
@@ -42,7 +42,7 @@ function DragNDrop() {
                     dispatch(setDisciplines(...disciplines));
                 } else {
                     if (!isFirstResponse) {
-                        message('Завантаження пройшло успішно');
+                        message('Завантаження дисциплін - успішне!');
                     }
                 }
             } catch (error) {
@@ -59,7 +59,7 @@ function DragNDrop() {
                     dispatch(setGroups(...teachers));
                 } else {
                     if (!isFirstResponse) {
-                        message('Завантаження пройшло успішно');
+                        message('Завантаження викладачів - успішне!');
                     }
                 }
             } catch (error) {
@@ -69,77 +69,6 @@ function DragNDrop() {
         loadTeachers();
         setIsFirstResponse(false);
     }, [dispatch, message, isFirstResponse]);
-
-
-
-
-    const listDiscipline = [
-        {
-            id: 1,
-            name: 'OOP',
-        },
-        {
-            id: 2,
-            name: 'TRPZ',
-        },
-        {
-            id: 3,
-            name: 'AP',
-        },
-    ];
-    const listTeacher = [
-        {
-            id: 1,
-            name: 'Vlasenko O.V',
-        },
-        {
-            id: 2,
-            name: 'Redzyuk E.V',
-        },
-        {
-            id: 3,
-            name: 'Fesyoha V.V',
-        },
-        {
-            id: 4,
-            name: 'Vlasenko O.V',
-        },
-        {
-            id: 5,
-            name: 'Redzyuk E.V',
-        },
-        {
-            id: 6,
-            name: 'Fesyoha V.V',
-        },
-        {
-            id: 7,
-            name: 'Vlasenko O.V',
-        },
-        {
-            id: 8,
-            name: 'Redzyuk E.V',
-        },
-        {
-            id: 9,
-            name: 'Fesyoha V.V',
-        },
-    ];
-    const listGroup = [
-        {
-            id: 1,
-            name: '291',
-        },
-        {
-            id: 2,
-            name: '292',
-        },
-        {
-            id: 3,
-            name: '293',
-        },
-    ]
-
 
     return (
         <>
@@ -152,6 +81,7 @@ function DragNDrop() {
                 return <Card key={item.id} id={item.id} name={item.nameEducationalComponent}
                              types={'disciplineCard'}/>
             })}
+
             </div>
             <div className={`center teacherCol`}>{teachers.map((item) => {
                 return <Card key={item.id} id={item.id} name={item.secondName + " " + item.firstName.charAt(0).toUpperCase() + "." +
@@ -160,8 +90,8 @@ function DragNDrop() {
             </div>
 
             <Board listGroup={groups}
-                   disciplineList={listDiscipline}
-                   teacherList={listTeacher}/>
+                   disciplineList={disciplines}
+                   teacherList={teachers}/>
         </>
     );
 };

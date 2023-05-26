@@ -13,7 +13,6 @@ const ScientificTeacherForm =
          registrationHandlerScientific,
          loading,
          setDatePickerValHandler,
-         setPhoneNumberValHandler,
 
      }) => {
         const options = {

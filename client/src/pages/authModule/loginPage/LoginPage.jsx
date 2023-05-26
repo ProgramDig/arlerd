@@ -37,11 +37,11 @@ const LoginPage = () => {
         if (res.status >= 200 && res.status <= 300) {
             if (auth.login) {
                 await auth.login(res.data.accessToken, res.data.role);
-                message(res.statusText)
+                console.log(res.statusText)
             }
         }
-
     }
+
 
     useEffect(() => {
         message(error)

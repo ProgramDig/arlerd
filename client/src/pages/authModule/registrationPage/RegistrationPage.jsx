@@ -81,11 +81,8 @@ const RegistrationPage = () => {
                 ...scientificTeacher
             }
         })
-        console.log(res)
-
+        message(res.statusText)
         dispatch(setTeacher(res.data))
-
-
         navigate('/log')
     }
 

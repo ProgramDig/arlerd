@@ -5,22 +5,22 @@ import Select from "../../form/select/Select";
 import GenerateCard from "../generateCard/GenerateCard";
 import uuid from "react-uuid";
 import M from 'materialize-css'
+import {useDispatch} from "react-redux";
+import {setDepartment, setYear, setYearAndDepartment} from "../../../store/slices/yeardAndDepartmentSlice";
 
 const Board = ({listGroup, teacherList, disciplineList}) => {
-    const [idYear , setYear] = useState({
-        idYear : ''
-    });
-    const [idDepartment , setDepartment] = useState({
-        idDepartment : ''
-    });
-
-    console.log(idYear , idDepartment)
+    const dispatch = useDispatch()
+    const [idYear , setIdYear] = useState();
+    const [idDepartment , setIdDepartment] = useState();
 
     const onChangeYearInput = (e) => {
-        setYear({...idYear , idYear : e.target.value})
+        console.log(e.target.value)
+        dispatch(setYear(e.target.value))
+        setIdYear(e.target.value)
     }
     const onChangeDepartmentInput = (e) => {
-        setYear({...idDepartment , idDepartment : e.target.value})
+        dispatch(setDepartment(e.target.value))
+        setIdDepartment(e.target.value)
     }
 
     const [itemsList, setItemsList] = useState([])
@@ -47,20 +47,19 @@ const Board = ({listGroup, teacherList, disciplineList}) => {
         e.preventDefault()
         // console.log(payload)
         const dataToSubmit = Object.values(payload)
-        const preparedData = dataToSubmit[0]
+        // const preparedData = dataToSubmit
         // console.log(dataToSubmit)
 
-        console.log(preparedData)
+        console.log(dataToSubmit)
 
         const requestOptions = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(preparedData)
+            body: JSON.stringify(payload)
         }
         const response = await fetch('http://localhost:5000/generate/data-processor', requestOptions);
-        const data = await response.json();
-        console.log( await response)
-        console.log( await data)
+        const data = await response.data;
+        console.log(data)
     }
     const createNewItem = () => {
         const key = uuid()
