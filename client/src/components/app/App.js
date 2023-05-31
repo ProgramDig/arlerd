@@ -5,22 +5,24 @@ import useRoutes from "../../hooks/routes.hook";
 import Footer from "../ui/footer/Footer";
 import {useAuth} from "../../hooks/auth.hook";
 import {useSelector} from "react-redux";
+import LocalContainer from "../ui/Container";
+import Container from "../ui/Container";
 
 function App() {
     const role = useSelector(state => state.role.value);
-
-
     const routes = useRoutes(role)
 
     const {login, logout} = useAuth();
     return (
-        <div className="App">
-            <AuthContext.Provider value={{ login, logout }}>
+        <Container className="App">
+            <AuthContext.Provider value={{login, logout}}>
                 {!!role && <NavBar/>}
+                    <LocalContainer >
                     {routes}
+                    </LocalContainer>
                 {!!role && <Footer/>}
             </AuthContext.Provider>
-        </div>
+        </Container>
     );
 }
 

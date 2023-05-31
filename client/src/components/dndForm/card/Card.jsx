@@ -23,27 +23,31 @@ const Card = ({id, name, types,color}) => {
 
         const [{isDragging}, drag] = useDrag(() => ({
             type: type,
-            item: {id: id, name: name},
+            item: {id: id, name: name , color: color},
             collect: (monitor) => ({
                 isDragging: !!monitor.isDragging()
             })
         }));
+
         const opacity = isDragging ? 0.4 : 1;
 
         return (
-            <div className="row " ref={drag} key={id} id={id} style={{
+            <div  className={`row `} ref={drag} key={id} id={id} style={{
                 opacity,
                 margin: 'auto'
             }}>
-                <div className="col s12 m11 center-align">
-                    <div className="card-panel  darken-4 green z-depth-3 " style={{
+                <div className={`center-align`}>
+                    <div className={`card-panel card ${color}`} style={{
+                        transition: 'transform 0.2s',
                         cursor : 'pointer',
-                        borderRadius: 15,
+                        padding:'25px',
+                        borderRadius: 20,
                         display: "flex",
-                        justifyContent: 'center'
+                        alignItems:'center',
+                        justifyContent: 'center',
                     }}>
-        <span className="white-text ">{name}
-        </span>
+        <p>{name}
+        </p>
                     </div>
                 </div>
             </div>

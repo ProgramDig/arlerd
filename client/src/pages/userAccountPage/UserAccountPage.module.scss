@@ -1,0 +1,33 @@
+.infoItem {
+  margin-top: 0.8em;
+  font-size: 16px;
+}
+
+.btnBlock {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flexContainer{
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.flexRow{
+  display: flex;
+  justify-content: stretch;
+  align-self: flex-start;
+
+}
+.flexCol{
+  display: flex;
+  justify-content: space-around;
+  align-self: center;
+  gap: 5em;
+}

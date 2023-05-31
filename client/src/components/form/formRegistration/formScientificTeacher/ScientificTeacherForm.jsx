@@ -119,6 +119,7 @@ const ScientificTeacherForm =
                         </div>
                     </div>
                     <Select
+                        color={'red-text'}
                         scientificTeacher={scientificTeacher}
                         onChangeInput={onChangeInput}
                         url='/ranks/all'
@@ -126,6 +127,7 @@ const ScientificTeacherForm =
                         nameOfEvent={'idRank'}
                     />
                     <Select
+                        color={'red-text'}
                         scientificTeacher={scientificTeacher}
                         onChangeInput={onChangeInput}
                         url={'/degrees/all'}

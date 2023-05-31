@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import Card from "../card/Card";
 import Board from "../board/Board";
-import M from "materialize-css";
 import {useDispatch, useSelector} from "react-redux";
 import {loadDisciplineThunk, setDisciplines} from "../../../store/slices/disciplineSlice";
 import {loadGroupThunk, setGroups} from "../../../store/slices/groupSlice";
 import {useMessage} from "../../../hooks/message.hook";
 import {loadTeachersThunk} from "../../../store/slices/teacherSlice";
+
 
 function DragNDrop() {
     const [isFirstResponse, setIsFirstResponse] = useState(true);
@@ -25,8 +25,7 @@ function DragNDrop() {
                     dispatch(setGroups(...groups));
                 } else {
                     if (!isFirstResponse) {
-                        message('Завантаження груп - успішне!');
-                    }
+                        console.log('firstResponse fetch groups')                    }
                 }
             } catch (error) {
                 message(error.message);
@@ -42,8 +41,7 @@ function DragNDrop() {
                     dispatch(setDisciplines(...disciplines));
                 } else {
                     if (!isFirstResponse) {
-                        message('Завантаження дисциплін - успішне!');
-                    }
+                        console.log('firstResponse fetch disciplines')                    }
                 }
             } catch (error) {
                 message(error.message);
@@ -59,7 +57,7 @@ function DragNDrop() {
                     dispatch(setGroups(...teachers));
                 } else {
                     if (!isFirstResponse) {
-                        message('Завантаження викладачів - успішне!');
+                        console.log('firstResponse fetch teachers')
                     }
                 }
             } catch (error) {
@@ -70,29 +68,36 @@ function DragNDrop() {
         setIsFirstResponse(false);
     }, [dispatch, message, isFirstResponse]);
 
-    return (
-        <>
-            <div className={` center groupCol`} >{groups.map((item) => {
-                return <Card key={item.id} id={item.id} name={item.name.slice(0,3)}   types={'groupCard'}/>
-            })}
 
+    return (
+        <React.Fragment>
+            <div className={`center teacherCol`}><i className={' material-icons '} style={{marginBottom: '30px',
+                fontSize: '4rem' , userSelect: 'none'}}>group_add</i>{teachers.map((item) => {
+                return <Card key={item.id} id={item.id} color={' yellow'} name={item.secondName + " " + item.firstName.charAt(0).toUpperCase() + "." +
+                    item.thirdName.charAt(0).toUpperCase()} types={'teacherCard'}/>
+            })}
             </div>
-            <div className={` center disciplineCol`}>{disciplines.map((item) => {
-                return <Card key={item.id} id={item.id} name={item.nameEducationalComponent}
+            <div className={` center disciplineCol `}><i className={' material-icons'}
+                                                         style={{marginBottom: '30px', fontSize: '4rem',
+                                                             userSelect: 'none'}}>
+                school</i>{disciplines.map((item) => {
+                return <Card key={item.id} id={item.id} color={' blue darken-2'}  name={item.nameEducationalComponent}
                              types={'disciplineCard'}/>
             })}
+            </div>
+            <div className={` center groupCol`} ><i className={' material-icons'} style={{marginBottom: '30px', fontSize: '4rem'}}>group</i>{groups.map((item) => {
+                return <Card key={item.id} id={item.id} color={' green darken-2'}  name={item.name.slice(0,3)}   types={'groupCard'}/>
+            })}
 
             </div>
-            <div className={`center teacherCol`}>{teachers.map((item) => {
-                return <Card key={item.id} id={item.id} name={item.secondName + " " + item.firstName.charAt(0).toUpperCase() + "." +
-                item.thirdName.charAt(0).toUpperCase()} types={'teacherCard'}/>
-            })}
-            </div>
+
+
+
 
             <Board listGroup={groups}
                    disciplineList={disciplines}
                    teacherList={teachers}/>
-        </>
+        </React.Fragment>
     );
 };
 

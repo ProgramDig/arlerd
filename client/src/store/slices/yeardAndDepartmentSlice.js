@@ -1,8 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-    idYear: '',
-    idDepartment: ''
+    idYear: undefined,
+    idDepartment: undefined
 };
 
 
@@ -16,7 +16,7 @@ const yearAndDepartmentIdSlice = createSlice({
             state.idYear = action.payload;
         },
         setDepartment(state , action) {
-            state.idDepartment = action.payload
+            state.idDepartment = action?.payload
         },
         removeYearAndDepartment(state){
             state.idYear = initialState.idYear;

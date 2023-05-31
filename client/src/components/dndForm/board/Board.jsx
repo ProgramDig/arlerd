@@ -6,22 +6,21 @@ import GenerateCard from "../generateCard/GenerateCard";
 import uuid from "react-uuid";
 import M from 'materialize-css'
 import {useDispatch, useSelector} from "react-redux";
-import {setDepartment, setYear, setYearAndDepartment} from "../../../store/slices/yeardAndDepartmentSlice";
+import {setDepartment, setYear} from "../../../store/slices/yeardAndDepartmentSlice";
+import {useMessage} from "../../../hooks/message.hook";
 
 const Board = ({listGroup, teacherList, disciplineList}) => {
+    const message = useMessage();
     const dispatch = useDispatch()
     // const [idYear, setIdYear] = useState();\
     const idYear = useSelector(state => state.yearAndDepartmentId.idYear)
     const idDepartment = useSelector(state => state.yearAndDepartmentId.idDepartment)
 
     const onChangeYearInput = (e) => {
-        // console.log(e.target.value)
         dispatch(setYear(e.target.value))
-        // setIdYear(e.target.value)
     }
     const onChangeDepartmentInput = (e) => {
         dispatch(setDepartment(e.target.value))
-        // setIdDepartment(e.target.value)
     }
 
     const [itemsList, setItemsList] = useState([])
@@ -38,9 +37,19 @@ const Board = ({listGroup, teacherList, disciplineList}) => {
         setItemsList([...itemsList, item])
     }
 
-    const removeItemFromList = (id) => {
+    const removeItemFromList = () => {
         //     removes last item from ItemList
-        setItemsList((previousArr) => (previousArr.slice(0, -1)))
+        setItemsList((previousArr) => previousArr.slice(0, -1));
+
+        setPayload((previousPayload) => {
+            const preparedData = Object.values(payload)
+            const updatedPayload = [...preparedData.slice(0, -1)];
+            return updatedPayload;
+        });
+    }
+    const removeAllItemsFromList = () => {
+        setItemsList(itemsList.slice(0,0))
+        setPayload([])
     }
 
 
@@ -48,28 +57,35 @@ const Board = ({listGroup, teacherList, disciplineList}) => {
         e.preventDefault()
         // console.log(payload)
         const dataToSubmit = Object.values(payload)
-        dataToSubmit.forEach(item=> {
-            item.idYear = Number.parseInt(idYear)
-            item.idDepartment = Number.parseInt(idDepartment)
-        })
+        dataToSubmit.forEach(item => {
+            if (idYear !== undefined) {
+                item.idYear = Number.parseInt(idYear);
+            }
+
+            if (idDepartment !== undefined) {
+                item.idDepartment = Number.parseInt(idDepartment);
+            }
+        });
         const preparedData = dataToSubmit
         console.log(payload)
-
         console.log(preparedData)
-
         const requestOptions = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(...preparedData)
+            body: JSON.stringify({...preparedData})
         }
         const response = await fetch('http://localhost:5000/generate/data-processor', requestOptions);
         const data = await response.data;
         console.log(data)
+        removeAllItemsFromList()
     }
+
+
     const createNewItem = () => {
         const key = uuid()
         return (<GenerateCard listGroup={listGroup}
                               key={key}
+                              color={' yellow'}
                               teacherList={teacherList}
                               disciplineList={disciplineList}
                               payload={payload}
@@ -80,9 +96,10 @@ const Board = ({listGroup, teacherList, disciplineList}) => {
     }
 
     return (
-        <div className={`col board z-depth-4`}>
-            <div className={'row'}>
+        <div className={`col board circle z-depth-5`}>
+            <div className={'row hoverable'}>
                 <Select
+                    color={'aqua'}
                     idYear={idYear}
                     onChangeInput={onChangeYearInput}
                     url='/year/all'
@@ -91,6 +108,7 @@ const Board = ({listGroup, teacherList, disciplineList}) => {
                 />
 
                 <Select
+                    color={'aqua'}
                     idDepartment={idDepartment}
                     onChangeInput={onChangeDepartmentInput}
                     url='/department/all'
@@ -101,15 +119,13 @@ const Board = ({listGroup, teacherList, disciplineList}) => {
 
 
             <div className="nav-wrapper icons">
-                <i className="material-icons"
-                   onClick={addItemToList}
-                >create</i><i
-                className="material-icons"
-                onClick={removeItemFromList}
-            >close</i><i
-                className="material-icons"
-                onClick={submitAllBoard}
-            >close</i></div>
+                <i className="material-icons hoverable icons circle "
+                   onClick={addItemToList}>add</i>
+                <i className="material-icons hoverable icons circle "
+                   onClick={submitAllBoard}>send</i>
+                <i className="material-icons hoverable icons circle "
+                   onClick={removeItemFromList}>close</i>
+            </div>
 
             {/* map on all itemLists */}
             {itemsList.map(item => item)}
