@@ -1,16 +1,16 @@
 export class DataProcessorDto {
-  readonly idTeacher: number;
-  readonly idYear: number;
-  readonly idDepartment: number;
-  readonly firstSemester: Semester;
-  readonly secondSemester: Semester;
+  readonly idTeacher: number | undefined;
+  readonly idYear: number | undefined;
+  readonly idDepartment: number | undefined;
+  readonly firstSemester: Semester | undefined;
+  readonly secondSemester: Semester | undefined;
 }
 
 export interface Semester {
-  readonly data: Data[];
+  readonly data: Data[] | undefined;
 }
 
 export interface Data {
-  idDiscipline: number;
-  idGroups: number[];
+  idDiscipline: number | undefined;
+  idGroups: number[] | undefined;
 }

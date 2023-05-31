@@ -9,15 +9,11 @@ Content-Type: application/json
     "data": [
       {
         "idDiscipline": 1,
-        "idGroups": [
-          1
-        ]
+        "idGroups": [1]
       },
       {
         "idDiscipline": 2,
-        "idGroups": [
-          1,2
-        ]
+        "idGroups": [1,2]
       }
     ]
   },
@@ -25,14 +21,10 @@ Content-Type: application/json
     "data": [
       {
         "idDiscipline": 2,
-        "idGroups": [
-          1
-        ]
+        "idGroups": [1]
       }, {
         "idDiscipline": 1,
-        "idGroups": [
-          2
-        ]
+        "idGroups": [2]
       }
     ]
   }

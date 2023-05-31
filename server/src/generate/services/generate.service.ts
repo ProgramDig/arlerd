@@ -1,4 +1,4 @@
-import { Injectable, Logger } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable, Logger } from "@nestjs/common";
 
 import * as PizZip from "pizzip";
 import * as fs from "fs";
@@ -42,6 +42,10 @@ export class GenerateService {
     const { idTeacher, idYear, idDepartment, secondSemester, firstSemester }: DataProcessorDto = dto;
     const firstSemesterInfo: SemesterInfo = { data: [] };
     const secondSemesterInfo: SemesterInfo = { data: [] };
+
+    if(idTeacher === undefined || idYear === undefined || secondSemester === undefined || firstSemester === undefined || idDepartment === undefined) {
+      throw new HttpException({message: "Заповніть всі комірки"}, HttpStatus.BAD_REQUEST);
+    }
 
     const teacher: Teacher = await this.teacherService.getByPk(idTeacher);
     const department: Department = await this.departmentService.getOneByPk(idDepartment);

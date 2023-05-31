@@ -12,15 +12,15 @@ M.AutoInit()
 const GenerateCard = ({listGroup, teacherList, disciplineList, payload, setPayload}) => {
 
 
-    const itemTeacher = useRef(null);
-    const itemGroupOne = useRef(null);
-    const itemGroupTwo = useRef(null);
-    const itemGroupThree = useRef(null);
-    const itemGroupFour = useRef(null);
-    const itemGroupFive = useRef(null);
-    const itemGroupSix = useRef(null);
-    const itemDisciplineOne = useRef(null);
-    const itemDisciplineTwo = useRef(null);
+    const itemTeacher = useRef();
+    const itemGroupOne = useRef();
+    const itemGroupTwo = useRef();
+    const itemGroupThree = useRef();
+    const itemGroupFour = useRef();
+    const itemGroupFive = useRef();
+    const itemGroupSix = useRef();
+    const itemDisciplineOne = useRef();
+    const itemDisciplineTwo = useRef();
     const key = uuid()
 
     const [{canDropDiscipline}, dropDisciplineOne] = useDrop(() => ({

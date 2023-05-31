@@ -6,13 +6,15 @@ import { UsersLogin } from "../../users-login/models/users-login.model";
 import { TokensService } from "../../tokens/services/tokens.service";
 import { JwtService } from "@nestjs/jwt";
 import { UserDto } from "../dto/user.dto";
+import { TeacherService } from "../../teacher/services/teacher.service";
 
 @Injectable()
 export class AuthService {
 
   constructor(private userLoginService: UsersLoginService,
               private tokenService: TokensService,
-              private jwtService: JwtService) {
+              private jwtService: JwtService,
+              private teacherService: TeacherService) {
   }
 
   async login(userLoginDto: CreateUserLoginDto) {
@@ -24,7 +26,8 @@ export class AuthService {
       isActivated: user.isActivated,
       role: user.role.value
     };
-    return { ...this.tokenService.generateTokens(user), user: userDto };
+    const teacher = await this.teacherService.getByUserLoginId(user.id);
+    return { ...this.tokenService.generateTokens(user), user: userDto, teacher: teacher };
   }
 
   async registration(userLoginDto: CreateUserLoginDto) {

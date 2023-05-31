@@ -7,9 +7,10 @@ import { JwtModule } from "@nestjs/jwt";
 import * as process from "process";
 import { RolesModule } from "../roles/roles.module";
 import { TokensModule } from "../tokens/tokens.module";
+import { TeacherModule } from "../teacher/teacher.module";
 
 @Module({
-  imports: [UsersLoginModule, DatabaseModule, RolesModule, TokensModule, JwtModule.register({
+  imports: [UsersLoginModule, DatabaseModule, RolesModule, TokensModule, TeacherModule, JwtModule.register({
     secret: process.env.ACCESS_PRIVATE_KEY || "SECRET",
     signOptions: { expiresIn: "24h" }
   })],

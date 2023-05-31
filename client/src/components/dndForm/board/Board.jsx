@@ -60,7 +60,7 @@ const Board = ({listGroup, teacherList, disciplineList}) => {
         const requestOptions = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(preparedData)
+            body: JSON.stringify(...preparedData)
         }
         const response = await fetch('http://localhost:5000/generate/data-processor', requestOptions);
         const data = await response.data;

@@ -29,6 +29,17 @@ export class TeacherService {
     return await this.teacherRepository.findByPk(id, { include: { all: true } });
   }
 
+  async getByUserLoginId(id: number): Promise<Teacher> {
+    return await this.teacherRepository.findOne({
+      where: {
+        idUserLogin: id
+      },
+      include: {
+        all: true
+      }
+    });
+  }
+
   async getAll(): Promise<Teacher[]> {
     return await this.teacherRepository.findAll({ include: { all: true } });
   }
