@@ -4,56 +4,53 @@ import classes from "./UserAccountPage.module.scss";
 import Modal from "../../components/form/modal/Modal";
 import useAxiosFunction from "../../hooks/axiosFunction.hook";
 import {useMessage} from "../../hooks/message.hook";
-import {setUser} from "../../store/slices/userSlice";
 import InfoModal from "../../components/form/modal/infoModal/InfoModal";
 import axiosInstance from "../../utils/axios";
+import {loadTeachersThunk, setTeacher, setTeachers} from "../../store/slices/teacherSlice";
+
 const UserAccountPage = () => {
-    const [response, error, loading, axiosFetch, clearError] = useAxiosFunction(axiosInstance);
+        const [response, error, loading, axiosFetch, clearError] = useAxiosFunction(axiosInstance);
+        const dispatch = useDispatch()
+        // const userLogin = useSelector(state => state.teacher)
+        const teachers = useSelector(state => state.teacher.list)
+        const teacher = useSelector(state => state.teacher)
+        const token = useSelector(state => state.token)
+        console.log(teachers,teacher, token)
+        const message = useMessage()
 
-    const dispatch = useDispatch()
-    const {request} = useAxiosFunction()
-    const message = useMessage()
+        useEffect(() => {
+            window.M.AutoInit()
+            const loadTeachers = async () => {
+                try {
+                    const response = await dispatch(loadTeachersThunk(token));
+                    console.log(response)
+                    if (response && response.data) {
+                        const teachers = response.data;
+                        dispatch(setTeachers(...teachers));
+                    }
+                } catch (error) {
+                    message(error.message);
+                }
+            }
+            loadTeachers();
+        }, [])
 
-    const user = useSelector(state => state.user.user)
-
-    console.log(user)
-    // const {id, email, login, password, role, isActivated, link} = user
-
-    useEffect(() => {
-        window.M.AutoInit()
-    }, [])
-
-    const updateHandler = async (user) => {
-    //     const res = await axiosFetch({
-    //         axiosInstance: axiosInstance,
-    //         method: 'POST',
-    //         url: REGISTRATION_SCIENTIFIC_URL_POST,
-    //         requestConfig: {
-    //             {...user, id: user.id},
-        //         {"Authorization": `Bearer ${JSON.parse(localStorage.getItem("user")).token.accessToken}`}
-    //         }
-    //     })
-    //     message(res.statusText)
-    //     dispatch(setTeacher(res.data))
-    //     navigate('/log')
-    // }
-
-        // const response = await request(
-        //     '/api/admin/users',
-        //     'PUT',
-        //     {...user, id: user.id},
-        //     {"Authorization": `Bearer ${JSON.parse(localStorage.getItem("user")).token.accessToken}`}
-        // )
-        // if (response.isUpdate) {
-        //     message(response.message)
-            dispatch(setUser(user))
-        // } else {
-        //     message(response.message)
-        // }
-    }
-
-
-    return (
+        const updateHandler = async (teacher) => {
+            const res = await axiosFetch({
+                axiosInstance: axiosInstance,
+                method: 'PUT',
+                url: '/api/admin/teacher',
+                requestConfig: {...teacher, id: teacher.id}
+            })
+            message(res.statusText)
+            if (res.isUpdate) {
+                message(response.message)
+                dispatch(setTeacher(res.data))
+            } else {
+                message(response.message)
+            }
+        }
+        return (
             <div className={classes.flexContainer}>
                 <div className="row center-align">
                     <h4 className="title">Особистий кабінет</h4>
@@ -62,15 +59,17 @@ const UserAccountPage = () => {
                     <div className={classes.flexRow}>
                         <img
                             style={{borderRadius: '50%'}}
-                             src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                             width={'250'} alt="userImage"
+                            src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+                            width={'250'} alt="userImage"
                         />
                     </div>
                     <div>
                         <InfoModal/>
-                        <div className={classes.infoItem}><strong>Логін:</strong> {user.login}</div>
-                        <div className={classes.infoItem}><strong>Пошта:</strong> {user.email}</div>
-                        <div className={classes.infoItem}><strong>Роль:</strong> {user.role}</div>
+                        <div className={classes.infoItem}><strong>Прізвище та ім'я:</strong>
+                            {teacher.teacher.firstName} {teacher.teacher.secondName} {teacher.teacher.thirdName}{teacher.teacher.thirdName}</div>
+                        <div className={classes.infoItem}><strong>Логін:</strong> {teacher.teacher.userLogin.login}</div>
+                        <div className={classes.infoItem}><strong>Пошта:</strong> {teacher.teacher.userLogin.email}</div>
+                        <div className={classes.infoItem}><strong>Роль:</strong> {teacher.teacher.userLogin.idRole}</div>
                         <div className={classes.btnBlock}>
                             <button
                                 data-target="modal2"
@@ -86,7 +85,7 @@ const UserAccountPage = () => {
                                 Змінити особисті дані
                             </button>
                         </div>
-                        <Modal thisUser={user} updateUserHandler={updateHandler} />
+                        {/*<Modal thisUser={teacher} updateUserHandler={updateHandler}/>*/}
                     </div>
                     <div className={''}>
                         <h6>Змінити пароль</h6>
@@ -111,7 +110,8 @@ const UserAccountPage = () => {
                     </div>
                 </div>
             </div>
-    );
-};
+        );
+    }
+;
 
 export default UserAccountPage;

@@ -99,7 +99,7 @@ const GenerateCard = ({listGroup, teacherList, disciplineList, payload, setPaylo
         }
 
         return {
-            idTeacher: 1,
+            idTeacher: itemTeacher?.current?.props?.id,
             firstSemester: {
                 data: firstSemesterData,
             },

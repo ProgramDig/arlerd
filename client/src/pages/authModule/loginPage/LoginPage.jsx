@@ -35,7 +35,7 @@ const LoginPage = () => {
         })
         if (res.status >= 200 && res.status <= 300) {
             if (auth.login) {
-                await auth.login(res.data.accessToken, res.data.role, res.data.user);
+                await auth.login(res.data.accessToken, res.data.role, res.data.teacher);
                 console.log(res.statusText)
             }
         }

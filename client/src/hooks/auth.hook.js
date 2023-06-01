@@ -12,7 +12,7 @@ export const useAuth = () => {
         dispatch(setTeacher(teacher))
         dispatch(setToken(jwtToken));
         dispatch(setRole(role));
-        localStorage.setItem(LOCALSTORAGE_NAME, JSON.stringify({token: jwtToken, role: role}));
+        localStorage.setItem(LOCALSTORAGE_NAME, JSON.stringify({token: jwtToken, role: role , teacher: teacher}));
     }, []);
 
     const logout = useCallback(() => {
@@ -25,7 +25,7 @@ export const useAuth = () => {
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem(LOCALSTORAGE_NAME) || "{}");
         if (data && data.token) {
-            login(data.token, data.role);
+            login(data.token, data.role, data.teacher);
         }
     }, [login]);
 

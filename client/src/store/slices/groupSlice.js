@@ -4,9 +4,13 @@ import axios from "axios";
 
 export const  loadGroupThunk = createAsyncThunk(
     "group/loadGroupThunk",
-    async function () {
+    async function (token) {
         try {
-            const response = await axios.get("http://localhost:5000/group/all")
+            const response = await axios.get("http://localhost:5000/group/all" , {
+                headers: {
+                    Authorization: `Bearer ${token.accessToken}`, // Include access token in the request header
+                },
+            })
             return response.data;
         } catch (error) {
             throw Error(error.message);

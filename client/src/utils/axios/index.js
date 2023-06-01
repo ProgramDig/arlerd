@@ -6,8 +6,8 @@ export default axios.create({
     timeout: 1000,
     headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
-
+        'Accept': 'application/json',
+        // "Authorization": `Bearer ${JSON.parse(localStorage.getItem("Teacher")).token.accessToken}`
     }
 });
 

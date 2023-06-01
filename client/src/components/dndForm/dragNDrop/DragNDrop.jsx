@@ -15,11 +15,13 @@ function DragNDrop() {
     const disciplines = useSelector(state => state.discipline.list);
     const message = useMessage()
     const dispatch = useDispatch();
+    const token = useSelector(state => state.token)
+    console.log(token)
 
     useEffect(() => {
         const loadGroups = async () => {
             try {
-                const response = await dispatch(loadGroupThunk());
+                const response = await dispatch(loadGroupThunk(token));
                 if (response && response.data) {
                     const groups = response.data;
                     dispatch(setGroups(...groups));
@@ -35,7 +37,7 @@ function DragNDrop() {
 
         const loadDisciplines = async () => {
             try {
-                const response= await dispatch(loadDisciplineThunk());
+                const response= await dispatch(loadDisciplineThunk(token));
                 if (response && response.data) {
                     const disciplines = response.data;
                     dispatch(setDisciplines(...disciplines));
@@ -51,7 +53,7 @@ function DragNDrop() {
 
         const loadTeachers = async () => {
             try {
-                const response = await dispatch(loadTeachersThunk());
+                const response = await dispatch(loadTeachersThunk(token));
                 if (response && response.data) {
                     const teachers = response.data;
                     dispatch(setGroups(...teachers));

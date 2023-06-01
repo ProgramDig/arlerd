@@ -8,11 +8,11 @@ import M from 'materialize-css'
 import {useDispatch, useSelector} from "react-redux";
 import {setDepartment, setYear} from "../../../store/slices/yeardAndDepartmentSlice";
 import {useMessage} from "../../../hooks/message.hook";
+import loginPage from "../../../pages/authModule/loginPage/LoginPage";
 
 const Board = ({listGroup, teacherList, disciplineList}) => {
-    const message = useMessage();
+    const message = useMessage()
     const dispatch = useDispatch()
-    // const [idYear, setIdYear] = useState();\
     const idYear = useSelector(state => state.yearAndDepartmentId.idYear)
     const idDepartment = useSelector(state => state.yearAndDepartmentId.idDepartment)
 
@@ -55,8 +55,9 @@ const Board = ({listGroup, teacherList, disciplineList}) => {
 
     const submitAllBoard = async (e) => {
         e.preventDefault()
-        // console.log(payload)
+        console.log(payload)
         const dataToSubmit = Object.values(payload)
+        console.log(dataToSubmit)
         dataToSubmit.forEach(item => {
             if (idYear !== undefined) {
                 item.idYear = Number.parseInt(idYear);
@@ -66,7 +67,7 @@ const Board = ({listGroup, teacherList, disciplineList}) => {
                 item.idDepartment = Number.parseInt(idDepartment);
             }
         });
-        const preparedData = dataToSubmit
+        const preparedData = {...dataToSubmit}
         console.log(payload)
         console.log(preparedData)
         const requestOptions = {
@@ -76,7 +77,7 @@ const Board = ({listGroup, teacherList, disciplineList}) => {
         }
         const response = await fetch('http://localhost:5000/generate/data-processor', requestOptions);
         const data = await response.data;
-        console.log(data)
+        message(data)
         removeAllItemsFromList()
     }
 
