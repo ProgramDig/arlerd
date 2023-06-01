@@ -18,4 +18,9 @@ export class GenerateController {
     console.log(dto)
     return this.generateService.dataProcessor(dto);
   }
+
+  @Post("data-processor-many")
+  dataProcessorMany(@Body() dtos: DataProcessorDto[]) {
+    return this.generateService.dataProcessorMany(dtos);
+  }
 }
