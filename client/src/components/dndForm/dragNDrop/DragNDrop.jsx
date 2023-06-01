@@ -27,7 +27,8 @@ function DragNDrop() {
                     dispatch(setGroups(...groups));
                 } else {
                     if (!isFirstResponse) {
-                        console.log('firstResponse fetch groups')                    }
+                        console.log('firstResponse fetch groups')
+                    }
                 }
             } catch (error) {
                 message(error.message);
@@ -37,13 +38,14 @@ function DragNDrop() {
 
         const loadDisciplines = async () => {
             try {
-                const response= await dispatch(loadDisciplineThunk(token));
+                const response = await dispatch(loadDisciplineThunk(token));
                 if (response && response.data) {
                     const disciplines = response.data;
                     dispatch(setDisciplines(...disciplines));
                 } else {
                     if (!isFirstResponse) {
-                        console.log('firstResponse fetch disciplines')                    }
+                        console.log('firstResponse fetch disciplines')
+                    }
                 }
             } catch (error) {
                 message(error.message);
@@ -73,27 +75,39 @@ function DragNDrop() {
 
     return (
         <React.Fragment>
-            <div className={`center teacherCol`}><i className={' material-icons '} style={{marginBottom: '30px',
-                fontSize: '4rem' , userSelect: 'none'}}>group_add</i>{teachers.map((item) => {
-                return <Card key={item.id} id={item.id} color={' yellow'} name={item.secondName + " " + item.firstName.charAt(0).toUpperCase() + "." +
-                    item.thirdName.charAt(0).toUpperCase()} types={'teacherCard'}/>
+            <div className={`center teacherCol`}><i className={' material-icons '} style={{
+                marginBottom: '30px',
+                fontSize: '4rem', userSelect: 'none'
+            }}>group_add</i>{teachers.map((item) => {
+                return <Card key={item.id} id={item.id} color={' yellow'} name={
+                    item.secondName
+                        ? item.secondName.length < 13
+                            ? item.secondName
+                            : item.secondName.slice(0, 13) + '.' + " " + item.firstName.charAt(0).toUpperCase() + "." +
+                            item.thirdName.charAt(0).toUpperCase()
+                        : ''
+                } types={'teacherCard'}/>
             })}
             </div>
             <div className={` center disciplineCol `}><i className={' material-icons'}
-                                                         style={{marginBottom: '30px', fontSize: '4rem',
-                                                             userSelect: 'none'}}>
+                                                         style={{
+                                                             marginBottom: '30px', fontSize: '4rem',
+                                                             userSelect: 'none'
+                                                         }}>
                 school</i>{disciplines.map((item) => {
-                return <Card key={item.id} id={item.id} color={' blue darken-2'}  name={item.nameEducationalComponent}
+                return <Card key={item.id} id={item.id} color={' blue darken-2'} name={item.nameEducationalComponent}
                              types={'disciplineCard'}/>
             })}
             </div>
-            <div className={` center groupCol`} ><i className={' material-icons'} style={{marginBottom: '30px', fontSize: '4rem'}}>group</i>{groups.map((item) => {
-                return <Card key={item.id} id={item.id} color={' green darken-2'}  name={item.name.slice(0,3)}   types={'groupCard'}/>
+            <div className={` center groupCol`}><i className={' material-icons'} style={{
+                marginBottom: '30px',
+                fontSize: '4rem'
+            }}>group</i>{groups.map((item) => {
+                return <Card key={item.id} id={item.id} color={' green darken-2'} name={item.name.slice(0, 3)}
+                             types={'groupCard'}/>
             })}
 
             </div>
-
-
 
 
             <Board listGroup={groups}

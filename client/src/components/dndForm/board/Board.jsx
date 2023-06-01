@@ -24,7 +24,7 @@ const Board = ({listGroup, teacherList, disciplineList}) => {
     }
 
     const [itemsList, setItemsList] = useState([])
-    const [payload, setPayload] = useState([]);
+    const [payload, setPayload] = useState({});
 
 
     useEffect(() => {
@@ -38,7 +38,6 @@ const Board = ({listGroup, teacherList, disciplineList}) => {
     }
 
     const removeItemFromList = () => {
-        //     removes last item from ItemList
         setItemsList((previousArr) => previousArr.slice(0, -1));
 
         setPayload((previousPayload) => {
@@ -54,11 +53,8 @@ const Board = ({listGroup, teacherList, disciplineList}) => {
 
 
     const submitAllBoard = async (e) => {
-        e.preventDefault()
-        console.log(payload)
-        const dataToSubmit = Object.values(payload)
-        console.log(dataToSubmit)
-        dataToSubmit.forEach(item => {
+
+        const dataToSubmit = Object.values(payload).map((item) => {
             if (idYear !== undefined) {
                 item.idYear = Number.parseInt(idYear);
             }
@@ -66,19 +62,38 @@ const Board = ({listGroup, teacherList, disciplineList}) => {
             if (idDepartment !== undefined) {
                 item.idDepartment = Number.parseInt(idDepartment);
             }
+            return {...item}
         });
-        const preparedData = {...dataToSubmit}
-        console.log(payload)
-        console.log(preparedData)
-        const requestOptions = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({...preparedData})
+
+        console.log(payload);
+        console.log("-------",dataToSubmit);
+        function fetchToggler() {
+            if (itemsList.length === 1) {
+                const requestOptionsForOne = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dataToSubmit[0])
+                };
+
+                return { url: 'http://localhost:5000/generate/data-processor', options: requestOptionsForOne };
+            } else if (itemsList.length > 1) {
+                const requestOptionsForMultiple = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dataToSubmit)
+                };
+
+                return { url: 'http://localhost:5000/generate/data-processor-many', options: requestOptionsForMultiple };
+            }
         }
-        const response = await fetch('http://localhost:5000/generate/data-processor', requestOptions);
+
+        const { url, options } = fetchToggler();
+
+        const response = await fetch(url, options);
+
         const data = await response.data;
-        message(data)
-        removeAllItemsFromList()
+        message(data);
+        removeAllItemsFromList();
     }
 
 
