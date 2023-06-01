@@ -4,9 +4,13 @@ import axios from "axios";
 
 export const loadTeachersThunk = createAsyncThunk(
     "teacher/loadTeachersThunk",
-    async function () {
+    async function (token) {
         try {
-            const response = await axios.get("http://localhost:5000/teacher/all");
+            const response = await axios.get("http://localhost:5000/teacher/all",{
+                headers: {
+                    Authorization: `Bearer ${token.accessToken}`, // Include access token in the request header
+                },
+            });
             const data = response.data;
             return data;
         } catch (error) {

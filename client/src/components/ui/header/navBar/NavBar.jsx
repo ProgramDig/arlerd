@@ -4,7 +4,7 @@ import {AuthContext} from "../../../../context/AuthContext";
 import Links from "../links/Links";
 import {BiExit, BiUserCircle} from "react-icons/bi";
 import {useSelector} from "react-redux";
-
+import classes from "./NavBar.module.scss";
 const NavBar = () => {
     const auth = useContext(AuthContext)
     const role = useSelector(state => state.role.value);
@@ -16,8 +16,8 @@ const NavBar = () => {
 
     return (
         <nav>
-            <div className="nav-wrapper blue darken-1" style={{padding: '0 2rem'}}>
-                <span href="#" className="brand-logo">Лого</span>
+            <div className="nav-wrapper blue header darken-1" >
+                <a href="#" className={`brand-logo + ${classes.navBar}`}></a>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                     <Links role={role}/>
                     <li>

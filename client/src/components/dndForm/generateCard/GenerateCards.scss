@@ -1,51 +1,68 @@
 
 .parent {
-    display: grid;
-    grid-template-columns: 1fr repeat(2, 1fr);
-    grid-template-rows: 2fr;
-    grid-column-gap: 20px;
-    grid-row-gap: 10px;
-    padding: 0.5em 2em;
-  }
+  display: grid;
+  grid-template-columns: 1fr repeat(2, 1fr);
+  grid-template-rows: 2fr;
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+  padding: 0.5em 1em;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  border: 0.1rem dotted #ffeb3b;
+  min-height: 40vh;
+  margin: 5px 15px;
+  transition: border-spacing 0.3s ease;
+}
 
-  .teacher-name {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.parent:hover {
+  transform: scale(1.01);
+  /* Add any other styles for the hover state */
+}
 
-  .parent2 {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 0.5fr;
-    grid-column-gap: 5px;
-    grid-row-gap: 5px;
-  }
+.teacher-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .box {
-    border-radius: 10%;
-    width: 75px;
-    height: 75px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    padding-left: 8px;
-  }
+.parent2 {
+  display: grid;
+  grid-template-columns: 2fr;
+  grid-template-rows: 1fr 0.5fr;
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+}
 
-  .colGroup {
-    box-shadow: #5fb4ff;
-    background-color: whitesmoke;
-    border-radius: 5%;
-  }
-  .groupCards {
+.box {
+  border-radius: 10%;
+  width: 80px;
+  height: 75px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: auto;
+}
 
-  }
+.groupCol {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  padding: 20px;
+  user-select: none;
+}
 
-  .scroll-container {
-    height: auto;
-    overflow: auto;
-  }
+.teacherCol {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  padding: 20px;
+}
+
+.disciplineCol {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  padding: 20px;
+
+}
+
+.scroll-container {
+  height: auto;
+  overflow: auto;
+}
 
 
 

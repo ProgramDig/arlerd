@@ -5,7 +5,7 @@ import M from "materialize-css";
 
 
 
-const Select = ({idDepartment , idYear,nameOfEvent,url,label,onChangeInput}) => {
+const Select = ({idDepartment , idYear,nameOfEvent,url,label,onChangeInput , color}) => {
 
     const [data, error, loading, refetch] = useAxios({
         axiosInstance: axios,
@@ -28,20 +28,16 @@ const Select = ({idDepartment , idYear,nameOfEvent,url,label,onChangeInput}) => 
 
     return (
         <div className={'col s6'}>
-            <div className="input-field ">
-                <span style={{color: 'red'}}>{label}</span>
+            <div className="input-field white-text">
+                <span className={color}>{label}</span>
 
-                <select id="selectDepartment" name={nameOfEvent} value={idDepartment} onChange={onChangeSelectVal}>
-                    {data.data && (
-                        data.data.map((item) => (
-                            <option value={item.id}
-                                    key={item.id}
-                            >
+                <select id="selectDepartment" className={'plain-text blue-grey'} name={nameOfEvent} onChange={onChangeSelectVal} defaultValue="">
+                    <option value="" disabled>Оберіть</option>
+                    {data.data && data.data.map((item, i) => (
+                            <option value={item.id} key={item.id}>
                                 {item.value || item.name}
                             </option>
-                        ))
-                    )
-                    }
+                    ))}
                 </select>
             </div>
         </div>

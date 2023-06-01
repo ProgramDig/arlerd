@@ -16,6 +16,7 @@ const useAxios = (configObj) => {
 
     const refetch = () => setReload(prev => prev + 1);
 
+
     useEffect(() => {
         let isMounted = true;
         const fetchData = async () => {
@@ -26,7 +27,6 @@ const useAxios = (configObj) => {
                 console.log(res);
                 if (isMounted) {
                    await setResponse(res);
-
                 }
             } catch (err) {
                 if (isMounted) {
@@ -41,17 +41,12 @@ const useAxios = (configObj) => {
         }
 
         // call the function
-       async function qwe(){
+       async function fetchFlag(){
             if(isMounted){
                await fetchData()
             }
         }
-
-        qwe()
-
-
-
-
+        fetchFlag()
         // useEffect cleanup function
         return () => {
             isMounted = false;

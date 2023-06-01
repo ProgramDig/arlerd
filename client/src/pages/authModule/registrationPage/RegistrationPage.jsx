@@ -19,6 +19,7 @@ import {setScientificTeacher, setScientificTeachers, setTeacher} from "../../../
 
 const RegistrationPage = () => {
     const [response, error, loading, axiosFetch, clearError] = useAxiosFunction(axiosInstance);
+
     const dispatch = useDispatch();
     const message = useMessage()
     const navigate = useNavigate()
@@ -46,7 +47,7 @@ const RegistrationPage = () => {
         phoneNumber: '+38',
         idRank: '',
         idDegree: '',
-        idUserLogin: '155'
+        idUserLogin: ''
     })
 
     const setFormRoleHandler = (value) => {
@@ -105,6 +106,7 @@ const RegistrationPage = () => {
                 }
             }
         )
+
 
         if (res.status >= 200 && res.status <= 300) {
             setScientificUserId(res.data.userId)

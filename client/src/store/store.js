@@ -5,9 +5,11 @@ import teacherSlice from "./slices/teacherSlice";
 import disciplineSlice from "./slices/disciplineSlice";
 import groupSlice from "./slices/groupSlice";
 import yearAndDepartmentIdSlice from './slices/yeardAndDepartmentSlice'
+import userSlice from "./slices/userSlice";
 
 export const store = configureStore({
     reducer: {
+        user:userSlice,
         yearAndDepartmentId: yearAndDepartmentIdSlice,
         group: groupSlice,
         discipline: disciplineSlice,
