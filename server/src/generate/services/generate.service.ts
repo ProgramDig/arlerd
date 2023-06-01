@@ -38,6 +38,13 @@ export class GenerateService {
     private ranksService: RanksService) {
   }
 
+  async dataProcessorMany(dtos: DataProcessorDto[]) {
+    for (const dto of dtos) {
+      await this.dataProcessor(dto);
+    }
+    return 0
+  }
+
   async dataProcessor(dto: DataProcessorDto): Promise<WorkLoad> {
     const { idTeacher, idYear, idDepartment, secondSemester, firstSemester }: DataProcessorDto = dto;
     const firstSemesterInfo: SemesterInfo = { data: [] };
